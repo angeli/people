@@ -214,7 +214,8 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 	{
 		var $hl = this.root().find(".Marker").first();
 		
-		var desks = this.desks;
+		var desks		= this.desks;
+		var old_desk	= this._selected_desk;
 		
 		if(!(desk instanceof Desk))
 		{
@@ -231,7 +232,9 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 		if(desk instanceof Desk)
 		{
 			desk.isSelected(true);
-			this._selected_desk = desk;			
+			this._selected_desk = desk;
+			
+			this.$container.trigger("map.desk-selected", [this, desk, old_desk]);
 		}
 		else
 		{
@@ -244,24 +247,42 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 		return this._selected_desk;
 	}
 	
+	Map.prototype.on = function()
+	{
+		this.$container.on.apply(this.$container, arguments);
+	}
+	
+	/**
+	 * Get / Set the map zoom level
+	 * 
+	 * @param {type} zoom
+	 * @returns {Int}
+	 */
 	Map.prototype.zoom = function(zoom)
 	{
-		console.log("Zoom", zoom);
-		
-		var new_zoom = ["scale(", zoom/100, ",", zoom/100, ")"].join('');
-		var old_zoom = ["scale(", this.zoom_val/100, ",", this.zoom_val/100, ")"].join('');
-		
-		this.root().children("g").each(function(i, g)
+		if(typeof zoom !== "undefined")
 		{
-			var transform = $(g).attr("transform") || '';
+			console.log("Zoom", zoom);
+
+			var new_zoom = ["scale(", zoom/100, ",", zoom/100, ")"].join('');
+			var old_zoom = ["scale(", this.zoom_val/100, ",", this.zoom_val/100, ")"].join('');
+
+			this.root().children("g").each(function(i, g)
+			{
+				var transform = $(g).attr("transform") || '';
+
+				transform  = transform.replace(old_zoom, ""); 
+				transform  = new_zoom + " " + transform;
+
+				$(g).attr("transform", transform);
+			});
+
+			this.zoom_val = zoom;
 			
-			transform  = transform.replace(old_zoom, ""); 
-			transform  = new_zoom + " " + transform;
-			
-			$(g).attr("transform", transform);
-		});
+			this.$container.trigger("map.zoomed", [this, 1]);
+		}
 		
-		this.zoom_val = zoom;
+		return this.zoom_val;
 	}
 	
 	Map.prototype.zoomIn = function(value)

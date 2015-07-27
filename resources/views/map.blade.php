@@ -89,6 +89,16 @@
 				
 				$(".btn.zoom-in").click(function(e) { map.zoomIn();	});
 				$(".btn.zoom-out").click(function(e){ map.zoomOut(); });
+				
+				map.on("map.zoomed", function(e, map)
+				{
+					console.log("Map Zoomed", e, map);
+				});
+				
+				map.on("map.desk-selected", function(e, map, desk, old)
+				{
+					console.log("Desk selected", desk, old);
+				});
 			});		
 			
 		</script>	
