@@ -13,6 +13,10 @@
 
 Route::get('/', 'Index@index');
 
+Route::get('/map', function()
+{
+    return View::make('map');
+});
 
 
 Route::group(array('prefix' => 'api'), function() {
