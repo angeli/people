@@ -13,9 +13,10 @@
 
 Route::get('/', 'Index@index');
 
+// A test map view
 Route::get('/map', function()
 {
-    return View::make('map');
+	return View::make('map');
 });
 
 
