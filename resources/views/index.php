@@ -8,10 +8,11 @@
 		<script src="assets/js/require.config.js"></script>	
 		
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.min.css"/>
 		
 	</head>
     <body>
-		<div id="PeopleApp" class="content">
+		<div id="PeopleApp" class="container">
 			<h1>Angular awaits!</h1>
 			<h2>Create pages and shits yo!</h2>
 			
