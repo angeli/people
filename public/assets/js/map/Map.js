@@ -240,7 +240,7 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 		}
 		else
 		{
-			throw new Error("Invalid desk selected!");
+			throw new Error("Invalid desk! Unable to select!");
 		}	
 	}
 	

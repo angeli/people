@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'Index@index');
+Route::get('/', function()
+{
+	return View::make('index');
+});
 
 // A test map view
 Route::get('/map', function()
