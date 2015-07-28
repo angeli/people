@@ -14,7 +14,7 @@
    height="1735"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48+devel r11109"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="Office.svg">
   <defs
      id="defs4">
@@ -48,9 +48,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="1752.8687"
-     inkscape:cy="257.13269"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="710.77611"
+     inkscape:cy="1337.628"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -74,7 +74,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3994,17 +3994,17 @@
       </g>
       <text
          xml:space="preserve"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
          x="223.20503"
          y="-686.40192"
          id="text6783"
          sodipodi:linespacing="125%"
          transform="matrix(0,-1,1,0,0,0)"><tspan
            id="tspan6785"
-           style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Sans;-inkscape-font-specification:Sans Bold"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
            sodipodi:role="line"
            x="223.20503"
-           y="-686.40192">001</tspan></text>
+           y="-686.40192">157</tspan></text>
       <g
          transform="translate(127.9655,-386.04051)"
          id="g6787"

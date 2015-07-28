@@ -1,5 +1,5 @@
 
-define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
+define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 {
 	"use strict";
 	
@@ -32,6 +32,7 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 		{
 			onLoad: function()
 			{
+				self.$container.kinetic();
 				def.resolve(self);
 			}
 		});
@@ -193,7 +194,7 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 	{
 		var desks = this.desks;
 		
-		for(i in desks)
+		for(var i in desks)
 		{
 			if(desks[i].id() == id)
 			{
@@ -233,6 +234,7 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 		{
 			desk.isSelected(true);
 			this._selected_desk = desk;
+			this.scrollToDesk(desk);
 			
 			this.$container.trigger("map.desk-selected", [this, desk, old_desk]);
 		}
@@ -295,6 +297,38 @@ define('map/Map', ['map/Desk','jquery.svg'], function(Desk)
 	{
 		value = this.zoom_val - (value || 10);
 		this.zoom(value);
+	}
+	
+	/**
+	 * Scroll the map to a given desk
+	 * 
+	 * @param {int|Desk} desk
+	 * @returns {undefined}
+	 */
+	Map.prototype.scrollToDesk = function(desk)
+	{
+		if(typeof desk === "number")
+		{
+			desk = this.getDesk(desk|0);			
+		}
+		
+		if(desk instanceof Desk)
+		{
+			var pos = desk.position();
+			
+			var scroll =
+			{
+				scrollTop		: (pos.top	- this.$container.height() / 2) + this.$container.scrollTop(),
+				scrollLeft		: (pos.left - this.$container.width() / 2)	+ this.$container.scrollLeft(),
+			}
+			
+			//this.selectDesk(desk);
+			this.$container.animate(scroll);			
+		}	
+		else
+		{
+			throw new Error("Invalid desk!");
+		}
 	}
 	
 	return Map;

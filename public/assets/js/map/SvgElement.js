@@ -117,9 +117,28 @@ define('map/SvgElement', ['jquery.svg'], function()
 		return this.$element[0].getBBox();
 	}
 	
+	SvgElement.prototype.offset = function()
+	{
+		return this.$element.offset();
+	}
+	
 	SvgElement.prototype.position = function()
 	{
-		return this.$element.position();
+		var pos		= this.$element.position();
+		return pos;
+		
+		var $parent	= this.root().parent();
+		
+//		return pos;
+		
+		var parentPos = $parent.position();
+		
+		pos.left += parentPos.left;
+		pos.top	 += parentPos.top;
+		
+		return pos;
+		
+		
 	}
 	
 	SvgElement.prototype.append = function(element)
