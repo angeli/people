@@ -4,8 +4,8 @@
         <title>People 1.0</title>
 		<meta charset="UTF-8">
 		
-		<script src="assets/js/vendor/require.js/require.js"></script>
-		<script src="assets/js/require.config.js"></script>	
+		<script src="/assets/js/vendor/require.js/require.js"></script>
+		<script src="/assets/js/require.config.js"></script>	
 		
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.min.css"/>
