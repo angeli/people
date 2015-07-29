@@ -57,6 +57,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	{
 		console.log('въркс too');
 
+		this.seat = '';
 		//TODO make ajax call to change user seat
 	};
 

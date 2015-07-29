@@ -39,6 +39,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+		if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
+		{
+			return response(json_encode(['error' => 'Tisho, what are you doing?']), 404)
+				->header('Content-Type', 'application/json');
+		}
+
         return parent::render($request, $e);
     }
 }

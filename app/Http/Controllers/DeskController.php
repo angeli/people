@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-# use Illuminate\Http\Response;
+use Illuminate\Http\Response;
 
-# use App\Http\Requests;
+
+
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Model\Desk;
 
-class Index extends Controller
+
+class DeskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +22,7 @@ class Index extends Controller
      */
     public function index()
     {
-		$d = new Desk();
-
-		$desks = $d->leftJoin('users', 'users_id', '=', 'u_id')->where('users_id', '<>', 0)->get()->toArray();
+		$desks = Desk::leftJoin('users', 'users_id', '=', 'u_id')->where('users_id', '<>', 0)->get()->toArray();
 
 		$ret = [];
 		foreach( $desks as $k => $d )
@@ -28,15 +30,10 @@ class Index extends Controller
 			$d['bg_name'] = mb_convert_encoding($d['bg_name'], 'UTF-8', 'cp1251');
 			$ret[$k] = $d;
 		}
-//
-//		echo '<pre>';
-//		print_r( $ret );
-//		echo '</pre>';
-//		die();
 
-
-	    return response()->json($ret);
+		return response()->json($ret);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +42,7 @@ class Index extends Controller
      */
     public function create()
     {
-        //
+        return new Response("Not Implemented", 501);
     }
 
     /**
@@ -56,7 +53,7 @@ class Index extends Controller
      */
     public function store(Request $request)
     {
-        //
+		return new Response("Not Implemented", 501);
     }
 
     /**
@@ -67,7 +64,26 @@ class Index extends Controller
      */
     public function show($id)
     {
-        //
+		if(empty($id)) {
+			return new Response("Mandatory parameter(s) are missing.", 405);
+		}
+
+		try {
+			$desk = Desk::findOrFail($id);
+			$res = $desk->user;
+
+			if( is_null($res ) ) {
+				return response(json_encode(['u_id' => 0]), 404)
+					->header('Content-Type', 'application/json');
+			}
+
+			return response()
+				->json($res->toArray());
+
+		}
+		catch (\Exception $e) {
+			return new Response("There was an error while processing the update request: " . $e->getMessage(), 500);
+		}
     }
 
     /**
@@ -78,7 +94,7 @@ class Index extends Controller
      */
     public function edit($id)
     {
-        //
+		return new Response("Not Implemented", 501);
     }
 
     /**
@@ -90,7 +106,21 @@ class Index extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$user = $request->input('user', '');
+
+		if( empty($id) || $user === '' ) {
+			return new Response("Mandatory parameter(s) are missing.", 405);
+		}
+
+		try {
+			$desk = Desk::findOrFail($id);
+			$desk->users_id = $user;
+			$desk->save();
+
+		}
+		catch (\Exception $e) {
+			return new Response("There was an error while processing the update request: " . $e->getMessage(), 500);
+		}
     }
 
     /**
@@ -101,6 +131,6 @@ class Index extends Controller
      */
     public function destroy($id)
     {
-        //
+        return new Response("Not Implemented", 501);
     }
 }

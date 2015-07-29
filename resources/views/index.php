@@ -95,13 +95,15 @@
 
 		<script type="text/javascript">
 
-					"use strict;";
-					require(['ngApp/PeopleApp', 'map/Map'], function(PeopleApp, Map)
-					{
-					// App Boot
-					var app = new PeopleApp();
-							app.bootstrap('#PeopleApp');
-					});
+			"use strict;";
+
+
+			require(['ngApp/PeopleApp','map/Map'], function(PeopleApp, Map)
+			{
+				// App Boot
+				var app = new PeopleApp();
+				app.bootstrap('#PeopleApp');
+			});
 		</script>
 	</body>
 </html>

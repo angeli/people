@@ -11,23 +11,13 @@
 |
 */
 
-Route::get('/', function()
+Route::get( '/', function()
 {
 	return View::make('index');
 });
 
-// A test map view
-Route::get('/map', function()
-{
-	return View::make('map');
+Route::group(['prefix' => 'api'], function () {
+
+    Route::resource('desks', 'DeskController');
+
 });
-
-
-Route::group(array('prefix' => 'api'), function() {
-    # return Route::resource('get', 'Index' );
-});
-
-
-//App::missing(function($exception) {
-//    return View::make('index');
-//});
