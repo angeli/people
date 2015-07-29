@@ -11,15 +11,13 @@
 |
 */
 
-Route::get('/', 'Index@index');
-
-
-
-Route::group(array('prefix' => 'api'), function() {
-    # return Route::resource('get', 'Index' );
+Route::get( '/', function()
+{
+	return View::make('index');
 });
 
+Route::group(['prefix' => 'api'], function () {
 
-//App::missing(function($exception) {
-//    return View::make('index');
-//});
+    Route::resource('desks', 'DeskController');
+
+});
