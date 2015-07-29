@@ -9,6 +9,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/assets/css/the-map.css"/>
 		
 	</head>
     <body>
@@ -19,6 +20,10 @@
 			<p ng-controller="TestCtrl as testCtrl">
 				{{testCtrl.test}}
 			</p>
+			
+			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>
+			<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID"/>
+			
 			
 		</div>
 		

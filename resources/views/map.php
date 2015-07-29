@@ -10,45 +10,7 @@
 		
 		<style type="text/css">
 			
-			#MapContainer
-			{
-				border	: 4px double black;
-				width	: 1024px;
-				height	: 768px;
-				overflow: scroll;				
-			}
-			
-			.Desk
-			{
-				cursor: pointer;
-			}
-			
-			.Desk .highlight
-			{
-				display: none;
-			}
-			
-			.Desk.selected .highlight
-			{
-				display:initial;
-			}
-			
-			.Desk.selected rect
-			{
-				fill : Red !important;
-			}
-			
-			.Desk.free rect
-			{
-				fill: Lime !important;
-			}
-			
-			.Menu
-			{
-				position: fixed;
-				top: 20px;
-			}		
-			
+		
 			
 		</style>
 			
