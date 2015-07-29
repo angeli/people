@@ -8,6 +8,7 @@ define('ngApp/PeopleApp', ['ngApp/Abstract'], function(AbstractApp)
 		this.controllers = 
 		[
 			'ngController/TestCtrl',
+			'ngController/PeopleCtrl',
 		];
 		
 		this.directives = 

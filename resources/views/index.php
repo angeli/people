@@ -13,17 +13,42 @@
 		
 	</head>
     <body>
-		<div id="PeopleApp" class="container">
-			<h1>Angular awaits!</h1>
-			<h2>Create pages and shits yo!</h2>
+		<div id="PeopleApp" ng-controller="PeopleCtrl as mainCtrl">
 			
-			<p ng-controller="TestCtrl as testCtrl">
-				{{testCtrl.test}}
-			</p>
+			<!--Navigation Bar-->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">People 1.0</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+						<ul class="nav navbar-nav">
+							<!--Possible nav buttons here-->
+						</ul>
+						
+						<form class="navbar-form navbar-left" role="search"> 
+							<div class="form-group">
+								<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID" class="form-control"/>
+							</div>							
+						</form>
+						
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
 			
-			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>
-			<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID"/>
 			
+				
+			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>			
 			
 		</div>
 		

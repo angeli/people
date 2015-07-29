@@ -1,9 +1,9 @@
 
 define('ngController/TestCtrl', ['ngController/Abstract'], function(AbstractCtrl)
 {
-	var TestCtrl = function()
+	var TestCtrl = function($scope)
 	{
-		this.test = "Hello, Nurse!!!";
+		this.test = "Hello, Nurse!!!";		
 	}
 	
 	TestCtrl.prototype = new AbstractCtrl;

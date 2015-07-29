@@ -314,7 +314,7 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 		
 		if(desk instanceof Desk)
 		{
-			var pos = desk.position();
+			var pos = desk.offset();
 			
 			var scroll =
 			{
