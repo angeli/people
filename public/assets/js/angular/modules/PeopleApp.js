@@ -4,20 +4,20 @@ define('ngApp/PeopleApp', ['ngApp/Abstract'], function(AbstractApp)
 	{
 		// Name of module inside angular
 		this.module_name = 'PeopleApp';
-		
-		this.controllers = 
+
+		this.controllers =
 		[
-			'ngController/TestCtrl',
+			'ngController/UserInfoCtrl',
 		];
-		
-		this.directives = 
+
+		this.directives =
 		[
 			'ngDirective/TheMap',
 		]
 	}
-	
+
 	PeopleApp.prototype = new AbstractApp;
-	
+
 	return PeopleApp;
 });
 
