@@ -39,13 +39,12 @@
 
 				<div class="row user-office-info">
 					<div class="col-md-6">
-						<div class="user-team">Team: {{uiCtrl.team}}</div>
-						<div class="user-team">Departament: {{uiCtrl.departament}}</div>
+						
+						<div class="user-team">Team: <b>{{uiCtrl.team}}</b></div>
+						<div class="user-team">Departament: <b>{{uiCtrl.departament}}</b></div>
+						<div class="user-team" ng-if="!uiCtrl.edit">Office seat: <b>{{uiCtrl.seat}}</b></div>
 
-						<div class="user-team" ng-if="!uiCtrl.edit">Office seat: {{uiCtrl.seat}}</div>
-						<div class="user-team edit" ng-if="uiCtrl.edit">
-							Office seat: <input type="text" ng-model="uiCtrl.seat" size="2">
-						</div>
+						<div class="user-team edit" ng-if="uiCtrl.edit">Office seat: <input type="text" ng-model="uiCtrl.seat" size="2"></div>
 
 					</div>
 
