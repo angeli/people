@@ -36,7 +36,7 @@
 }
 
 div.user-position, div.user-name {
-	margin-left: 5px;
+	margin-left: 20px;
 }
 
 #user-lname {
@@ -47,9 +47,32 @@ div.user-position, div.user-name {
 	border-bottom: 2px solid #007aff;
 }
 
-.edit-ok {
+.edit-ok, .edit-leave {
 	font-size: 25px;
+}
+.edit-ok:hover, .edit-leave:hover {
+	cursor: pointer;
+}
+
+.edit-ok {
 	color: #007aff;
-	margin: -29px 233px;
-	//position: relative;
+	margin: -29px 155px;
+	padding-left: 0px;
+}
+
+.edit-leave {
+	color: #db2525;
+	margin: -29px 190px;
+	padding-left: 0px;
+}
+
+.lock {
+	font-size: 20px;
+	margin: 5px -25px;
+	color: #888888;
+}
+
+.lock:hover {
+	cursor: pointer;
+	color: #000000;
 }

@@ -24,7 +24,7 @@
 
 				<div class="row">
 					<div class="col-md-4"><img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" /></div>
-					<div class="col-md-1"></div>
+
 					<div class="col-md-7">
 						<div class="user-name">
 							<div>{{uiCtrl.fname}}</div>
@@ -32,20 +32,26 @@
 						</div>
 						<div class="user-position">{{uiCtrl.position}}</div>
 					</div>
+					<div class="col-md-1">
+						<div class="lock" ng-if="uiCtrl.admin" ng-click="uiCtrl.releseLock()"><i class="{{uiCtrl.is_locked? 'fa fa-lock': 'fa fa-unlock'}}"></i></div>
+					</div>
 				</div>
 
 				<div class="row user-office-info">
-					<div class="col-md-9">
+					<div class="col-md-6">
 						<div class="user-team">Team: {{uiCtrl.team}}</div>
 						<div class="user-team">Departament: {{uiCtrl.departament}}</div>
 
 						<div class="user-team" ng-if="!uiCtrl.edit">Office seat: {{uiCtrl.seat}}</div>
 						<div class="user-team edit" ng-if="uiCtrl.edit">
-							Office seat: <input type="text" ng-model="uiCtrl.seat">
+							Office seat: <input type="text" ng-model="uiCtrl.seat" size="2">
 						</div>
 
 					</div>
-					<div class="edit-ok col-md-1"><i class="fa fa-pencil"></i></div>
+
+					<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.chengeSeat()"><i class="fa fa-pencil"></i></div>
+						<div class="col-md-1"></div>
+					<div class="edit-leave col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveSeat()"><i class="fa fa-close"></i></div>
 				</div>
 
 				<div class="row user-mail">
