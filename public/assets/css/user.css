@@ -1,0 +1,78 @@
+/*
+    Created on : Jul 29, 2015, 2:59:34 PM
+    Author     : tihomir.tsvetkov@gameloft.com
+*/
+
+.user-info {
+	background: white;
+    box-shadow: 0 0 5px 2px #888888;
+    border-radius: 5px;
+    height: 205px;
+    margin-left: -350px;
+    margin-top: -150px;
+    position: absolute;
+    width: 330px;
+}
+
+.user-picture {
+	width: 120px;
+	height: 100px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.user-name {
+	font-weight: bolder;
+	font-size: 35px;
+}
+
+.user-office-info {
+	margin-left: -5px;
+}
+
+.user-mail {
+	font-size: 12px;
+	margin: 5px 10px;
+}
+
+div.user-position, div.user-name {
+	margin-left: 20px;
+}
+
+#user-lname {
+	margin-top: -10px;
+}
+
+.edit {
+	border-bottom: 2px solid #007aff;
+}
+
+.edit-ok, .edit-leave {
+	font-size: 25px;
+}
+.edit-ok:hover, .edit-leave:hover {
+	cursor: pointer;
+}
+
+.edit-ok {
+	color: #007aff;
+	margin: -29px 155px;
+	padding-left: 0px;
+}
+
+.edit-leave {
+	color: #db2525;
+	margin: -29px 190px;
+	padding-left: 0px;
+}
+
+.lock {
+	font-size: 20px;
+	margin: 5px -25px;
+	color: #888888;
+}
+
+.lock:hover {
+	cursor: pointer;
+	color: #000000;
+}
