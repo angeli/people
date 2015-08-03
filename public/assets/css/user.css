@@ -8,8 +8,8 @@
     box-shadow: 0 0 5px 2px #888888;
     border-radius: 5px;
     height: 205px;
-    margin-left: -350px;
-    margin-top: -150px;
+	left: 20px;
+	bottom: 100px;
     position: absolute;
     width: 330px;
 }

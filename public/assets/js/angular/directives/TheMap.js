@@ -20,18 +20,41 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 		var map = new Map(element);
 		var src = attr.ngSrc;
 		
-		map.loadSVG(src);
+		map.loadSVG(src).then(function()
+		{
+			// Emit Ready event when map is finished loading
+			scope.$emit('map.ready', [map]);
+			scope.$broadcast('map.ready', [map]);
+		});
 		
 		// Change selection
 		scope.$watch('selectedDesk', function(new_desk)
 		{
 			var selected = map.getSelectedDesk();
 			
-			if(!selected || selected.id() != new_desk|0)
+			if(!new_desk)
+				return;
+			try
 			{
-				map.selectDesk(new_desk);
+				if(!selected || selected.id() != new_desk|0)
+				{
+					map.selectDesk(new_desk);
+				}
+			}
+			catch(e)
+			{
+				
 			}
 		});
+		
+		// Bind selection change
+		map.on("map.desk-selected", function(e, map, desk)
+		{
+			scope.$emit("map.desk-selected", [map, desk]);
+			scope.$broadcast("map.desk-selected", [map, desk]);
+		});
+		
+		
 	}
 	
 	return TheMap;	

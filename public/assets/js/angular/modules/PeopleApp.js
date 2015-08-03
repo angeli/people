@@ -8,12 +8,19 @@ define('ngApp/PeopleApp', ['ngApp/Abstract'], function(AbstractApp)
 		this.controllers =
 		[
 			'ngController/UserInfoCtrl',
+			'ngController/TestCtrl',
+			'ngController/PeopleCtrl',
 		];
 
 		this.directives =
 		[
 			'ngDirective/TheMap',
 		]
+
+		this.services =
+		[
+			'ngService/PeopleApi',
+		];
 	}
 
 	PeopleApp.prototype = new AbstractApp;
