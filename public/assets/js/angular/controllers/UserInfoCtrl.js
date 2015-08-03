@@ -13,15 +13,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.is_locked		= true
 		this.scope			= $scope;
 
-		this.name			= '';
-		this.user_id		= '';
-		this.position		= '';
-		this.departament	= '';
-		this.team			= '';
-		this.mail			= '';
 		this.desk			= false;
-
-
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
@@ -74,13 +66,15 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	UserInfoCtrl.prototype.openDesk = function(desk)
 	{
 		var self = this;
+
+
 		this.apiService.getDesk(desk).then(
 			function(data)
 			{
 				self.name			= data.u_name;
 				self.user_id		= data.u_id;
-				self.position		= 'SEM Developer';
-				self.departament	= 'WEB';
+				self.position		= data.department.job;
+				self.department		= data.department.dep;
 				self.team			= data.location;
 				self.mail			= data['e-mail'];
 				self.desk			= desk;
@@ -89,12 +83,16 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			},
 			function(fail)
 			{
-
+				self.name			= '';
+				self.user_id		= '';
+				self.position		= '';
+				self.department	= '';
+				self.team			= '';
+				self.mail			= '';
+				self.desk			= false;
 			}
 //			,function(update)
 //			{
-//				self.profile		= update;
-//				self.client_config	= update;
 //			}
 		);
 
