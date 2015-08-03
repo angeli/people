@@ -18,4 +18,11 @@ class User extends Model
 	{
 		return $this->belongsTo('App\Model\Desk', 'u_id', 'users_id');
 	}
+
+
+	public function department()
+	{
+		return $this->hasOne('App\Model\Department', 'id', 'departmant_id');
+	}
+
 }
