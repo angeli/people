@@ -38,10 +38,10 @@
 							<!--Possible nav buttons here-->
 						</ul>
 
-						<form class="navbar-form navbar-left" role="search">
+						<form class="navbar-form navbar-left" role="search"> 
 							<div class="form-group">
 								<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID" class="form-control"/>
-							</div>
+							</div>							
 						</form>
 
 					</div><!-- /.navbar-collapse -->
@@ -50,7 +50,7 @@
 
 
 			<!--The Map-->
-			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>
+			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>		
 
 			<div class="user-info" ng-controller="UserInfoCtrl as uiCtrl">
 

@@ -12,17 +12,24 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 	{
 		var self = this;
 		var options = [];
+		var def		= this.q.defer();
 
-		this.http.get('/api/desks', options)
-		.success(function(options, status)
-		{
-			console.log("Success", status, options);
-			//self.requests.splice(i, 1);
-		})
-		.error(function(options, status)
-		{
-			console.log("Failed!", status, options);
-		});
+		setTimeout(function() {
+
+			self.http.get('/api/desks', options)
+			.success(function(result)
+			{
+				console.log("Success", result);
+				def.resolve(result);
+			})
+			.error(function(result)
+			{
+				console.log("Failed!", result);
+				def.reject(result);
+			});
+		}, 1000);
+
+		return def.promise;
 	};
 
 	PeopleApi.prototype.getDesk = function(desk)
@@ -32,9 +39,9 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		var def		= this.q.defer();
 
 		var uri = '/api/desks/' + desk;
-console.log(uri);
+
 		setTimeout(function() {
-			
+
 			self.http.get(uri, options)
 			.success(function(result)
 			{

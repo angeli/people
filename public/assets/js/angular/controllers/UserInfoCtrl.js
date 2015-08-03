@@ -21,6 +21,22 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.seat			= '';
 
 		this.openDesk(140);
+
+		$scope.$parent.$on("map.desk-selected", function($e, args)
+		{
+			var map		= args[0];
+			var desk	= args[1];
+
+			console.log("User Info Desk Selected: " + desk.id(), map, desk);
+		});
+
+
+		$scope.$parent.$on("map.ready", function($e, args)
+		{
+			var map = args[0];
+
+			console.log("Da map is loaded", map);
+		});
 	};
 
 	UserInfoCtrl.prototype = new AbstractCtrl;
@@ -62,7 +78,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 				self.position		= 'SEM Developer';
 				self.departament	= 'WEB';
 				self.team			= data.location;
-				self.mail			= data.e-mail;
+				//self.mail			= data.e-mail;
 				self.seat			= data.id;
 				self.setNames();
 				console.log(data);

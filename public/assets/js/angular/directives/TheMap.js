@@ -24,6 +24,7 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 		{
 			// Emit Ready event when map is finished loading
 			scope.$emit('map.ready', [map]);
+			scope.$broadcast('map.ready', [map]);
 		});
 		
 		// Change selection
@@ -50,6 +51,7 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 		map.on("map.desk-selected", function(e, map, desk)
 		{
 			scope.$emit("map.desk-selected", [map, desk]);
+			scope.$broadcast("map.desk-selected", [map, desk]);
 		});
 		
 		
