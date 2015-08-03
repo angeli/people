@@ -15,6 +15,8 @@ define('ngApp/PeopleApp', ['ngApp/Abstract'], function(AbstractApp)
 		this.directives =
 		[
 			'ngDirective/TheMap',
+			'ngDirective/Select2',
+			'ngDirective/Search'
 		]
 
 		this.services =

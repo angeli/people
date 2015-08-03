@@ -6,6 +6,7 @@ require.config(
 		'jquery'	: 'vendor/jquery/jquery',
 		'kinetic'	: 'jquery.kinetic.min',
 		'bootstrap'	: 'bootstrap.min',
+		'select2'	: 'select2.min',
 
 		'ngController'	: 'angular/controllers',	// AngularJS Controllers
 		'ngFilter'		: 'angular/filters',		// AngularJS Filters
@@ -44,7 +45,13 @@ require.config(
 		'bootstrap' : 
 		{
 			deps : ['jquery']
+		},
+		
+		'select2' :
+		{
+			deps : ['jquery'],
 		}
+		
 	}	
 });
 

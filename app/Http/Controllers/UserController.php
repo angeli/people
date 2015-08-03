@@ -19,17 +19,21 @@ class UserController extends Controller
      */
     public function index(Request $request, DatabaseManager $db)
     {
-        $host = explode('.', gethostbyaddr($request->server->get('REMOTE_ADDR')));
-		$host = $host[0];
+        # $host = explode('.', gethostbyaddr($request->server->get('REMOTE_ADDR')));
+		# $host = $host[0];
 
-
+		$host = getenv('COMPUTERNAME');
 
 		$res = $db->table('computers')->select('u_name', 'user_id')->join('users', 'u_id', '=', 'user_id')->where('name', '=', $host)->first();
 
-		$ret = [
-			'name' => $res->u_name,
-			'success' => $this->checkUser($res->user_id)
-		];
+		$ret = [];
+
+		if( $res ) {
+			$ret = [
+				'name' => $res->u_name,
+				'success' => $this->checkUser($res->user_id)
+			];
+		}
 		
 		return response()
 			->json($ret);

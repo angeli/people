@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 3, 2015, 4:40:42 PM
+    Author     : Nikolay Dachin <nikolay.dachin@gameloft.com>
+*/
+
+#UserSearch
+{
+	width: 330px;
+	height: 50px;
+	
+	position: absolute;
+	bottom: 15px;	
+	margin: 20px;
+}
+
+#UserSearch .select2-container
+{
+	width: 100% !important;
+}
