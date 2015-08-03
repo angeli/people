@@ -7,10 +7,12 @@
 		<script src="/assets/js/vendor/require.js/require.js"></script>
 		<script src="/assets/js/require.config.js"></script>
 
+		<link rel="stylesheet" type="text/css" href="/assets/css/select2.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/the-map.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/user.css"/>
+		<link rel="stylesheet" type="text/css" href="/assets/css/search.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css"/>
 
 	</head>
@@ -38,10 +40,10 @@
 							<!--Possible nav buttons here-->
 						</ul>
 
-						<form class="navbar-form navbar-left" role="search">
+						<form class="navbar-form navbar-left" role="search"> 
 							<div class="form-group">
 								<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID" class="form-control"/>
-							</div>
+							</div>							
 						</form>
 
 					</div><!-- /.navbar-collapse -->
@@ -50,7 +52,7 @@
 
 
 			<!--The Map-->
-			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>
+			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>		
 
 			<div ng-controller="UserInfoCtrl as uiCtrl">
 				<div class="user-info" ng-if="uiCtrl.desk">
@@ -91,6 +93,12 @@
 					</div>
 				</div>
 			</div>
+
+			
+						
+			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
+			
+			
 		</div>
 
 		<script type="text/javascript">
