@@ -82,7 +82,7 @@
 					</div>
 
 					<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.chengeSeat()"><i class="fa fa-pencil"></i></div>
-					<div class="col-md-1"></div>
+						<div class="col-md-1"></div>
 					<div class="edit-leave col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveSeat()"><i class="fa fa-close"></i></div>
 				</div>
 

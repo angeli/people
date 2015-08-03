@@ -16,6 +16,23 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.mail			= 'tihomir.tsvetkov@gameloft.com';
 		this.seat			= 140;
 		this.setNames();
+		
+		
+		$scope.$parent.$on("map.desk-selected", function($e, args)
+		{
+			var map		= args[0];
+			var desk	= args[1];
+			
+			console.log("User Info Desk Selected: " + desk.id(), map, desk);
+		});
+		
+		
+		$scope.$parent.$on("map.ready", function($e, args)
+		{
+			var map = args[0];
+			
+			console.log("Da map is loaded", map);
+		});
 	};
 
 	UserInfoCtrl.prototype = new AbstractCtrl;
