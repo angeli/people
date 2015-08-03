@@ -70,7 +70,12 @@ class DeskController extends Controller
 
 		try {
 			$desk = Desk::findOrFail($id);
+
+			# Take the user
 			$res = $desk->user;
+
+			# Load departament info
+			$res->department;
 
 			if( is_null($res ) ) {
 				return response(json_encode(['u_id' => 0]), 404)
