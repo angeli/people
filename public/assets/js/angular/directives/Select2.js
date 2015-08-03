@@ -1,5 +1,5 @@
 
-define('ngDirective/Select2', ['ngDirective/Abstract'], function(AbstractDirective)
+define('ngDirective/Select2', ['ngDirective/Abstract', 'select2'], function(AbstractDirective)
 {
 	"use strict";	
 	
@@ -102,25 +102,6 @@ define('ngDirective/Select2', ['ngDirective/Abstract'], function(AbstractDirecti
 		}
 				
 	}
-	
-//	Select2.prototype.setupData = function(data)
-//	{
-//		var out = [];
-//		
-//		if(typeof data == "object")
-//		{
-//			var keys = Object.keys(data);
-//			
-//			for(k in keys)
-//			{
-//				var key = keys[k];
-//				
-//				
-//			}
-//		}
-//	}
-//	
-	
 	
 	return Select2;	
 });

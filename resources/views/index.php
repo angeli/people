@@ -7,6 +7,7 @@
 		<script src="/assets/js/vendor/require.js/require.js"></script>
 		<script src="/assets/js/require.config.js"></script>
 
+		<link rel="stylesheet" type="text/css" href="/assets/css/select2.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/the-map.css"/>
@@ -90,6 +91,10 @@
 					<div><a href="mailto:{{uiCtrl.mail}}">{{uiCtrl.mail}}</a></div>
 				</div>
 
+			</div>
+			
+			<div>
+				<selec2></selec2>
 			</div>
 		</div>
 
