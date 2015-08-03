@@ -16,6 +16,11 @@ define('ngApp/PeopleApp', ['ngApp/Abstract'], function(AbstractApp)
 		[
 			'ngDirective/TheMap',
 		]
+
+		this.services =
+		[
+			'ngService/PeopleApi',
+		];
 	}
 
 	PeopleApp.prototype = new AbstractApp;
