@@ -46,11 +46,11 @@ define('ngDirective/Select2', ['ngDirective/Abstract', 'select2'], function(Abst
 			$element.change(function(e)
 			{
 				// Update Model
-				scope.$apply(function()
+				scope.$evalAsync(function()
 				{
 					ngModel.$setViewValue($element.select2('val'));
 					//console.log("Select 2 Change", ngModel.$modelValue);
-				});
+				});				
 			});
 		}
 		
@@ -88,8 +88,6 @@ define('ngDirective/Select2', ['ngDirective/Abstract', 'select2'], function(Abst
 			
 			scope.$watch('select2Open', function(new_val, ol_val)
 			{
-				console.log("Select2 Watch", new_val);
-				
 				if(new_val && new_val != ol_val)
 				{
 					element.select2('open');

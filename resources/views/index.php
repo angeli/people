@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/the-map.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/user.css"/>
+		<link rel="stylesheet" type="text/css" href="/assets/css/search.css"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css"/>
 
 	</head>
@@ -93,9 +94,10 @@
 
 			</div>
 			
-			<div>
-				<selec2></selec2>
-			</div>
+						
+			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
+			
+			
 		</div>
 
 		<script type="text/javascript">
