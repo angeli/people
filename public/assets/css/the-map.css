@@ -10,10 +10,12 @@ and open the template in the editor.
 
 	.map-container
 	{
-		border		: 4px double black;
-		width		: 1280px; 
-		height		: 720px;
-		overflow	: scroll;				
+		width		: 100%; 
+		height		: calc(100vh - 52px);
+		overflow	: scroll;		
+		
+		margin-top	: -20px;
+		position	: relative; 
 	}
 
 	.Desk
@@ -35,10 +37,32 @@ and open the template in the editor.
 	{
 		fill: Lime !important;
 	}
+	
+	.Desk tspan
+	{
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 
 	.Menu
 	{
 		position: fixed;
 		top: 20px;
-	}		
+	}	
+	
+	.Department
+	{
+		opacity: 0 !important;
+	}
+	
+	.Department:hover
+	{
+		opacity: 1 !important;;
+	}
+	
+	
 			

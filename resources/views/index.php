@@ -15,9 +15,41 @@
 
 	</head>
     <body>
-		<div id="PeopleApp" class="container">
+		<div id="PeopleApp" ng-controller="PeopleCtrl as mainCtrl">
+
+			<!--Navigation Bar-->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">People 1.0</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+						<ul class="nav navbar-nav">
+							<!--Possible nav buttons here-->
+						</ul>
+
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID" class="form-control"/>
+							</div>
+						</form>
+
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
 
 
+			<!--The Map-->
 			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>
 
 			<div class="user-info" ng-controller="UserInfoCtrl as uiCtrl">
@@ -39,17 +71,18 @@
 
 				<div class="row user-office-info">
 					<div class="col-md-6">
-						
-						<div class="user-team">Team: <b>{{uiCtrl.team}}</b></div>
-						<div class="user-team">Departament: <b>{{uiCtrl.departament}}</b></div>
-						<div class="user-team" ng-if="!uiCtrl.edit">Office seat: <b>{{uiCtrl.seat}}</b></div>
+						<div class="user-team">Team: {{uiCtrl.team}}</div>
+						<div class="user-team">Departament: {{uiCtrl.departament}}</div>
 
-						<div class="user-team edit" ng-if="uiCtrl.edit">Office seat: <input type="text" ng-model="uiCtrl.seat" size="2"></div>
+						<div class="user-team" ng-if="!uiCtrl.edit">Office seat: {{uiCtrl.seat}}</div>
+						<div class="user-team edit" ng-if="uiCtrl.edit">
+							Office seat: <input type="text" ng-model="uiCtrl.seat" size="2">
+						</div>
 
 					</div>
 
 					<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.chengeSeat()"><i class="fa fa-pencil"></i></div>
-						<div class="col-md-1"></div>
+					<div class="col-md-1"></div>
 					<div class="edit-leave col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveSeat()"><i class="fa fa-close"></i></div>
 				</div>
 
@@ -58,10 +91,6 @@
 				</div>
 
 			</div>
-
-			<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID"/>
-
-
 		</div>
 
 		<script type="text/javascript">
