@@ -7,6 +7,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 		console.log($scope);
 		this.apiService		= PeopleApi;
+		var self			= this;
 		this.edit			= false;
 		this.admin			= true;
 		this.is_locked		= true
@@ -18,14 +19,17 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.departament	= '';
 		this.team			= '';
 		this.mail			= '';
-		this.seat			= '';
+		this.desk			= false;
 
-		this.openDesk(140);
+
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
 			var map		= args[0];
 			var desk	= args[1];
+			var desk_id = desk.id();
+
+			self.openDesk(desk_id);
 
 			console.log("User Info Desk Selected: " + desk.id(), map, desk);
 		});
@@ -78,8 +82,8 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 				self.position		= 'SEM Developer';
 				self.departament	= 'WEB';
 				self.team			= data.location;
-				//self.mail			= data.e-mail;
-				self.seat			= data.id;
+				self.mail			= data['e-mail'];
+				self.desk			= desk;
 				self.setNames();
 				console.log(data);
 			},
@@ -101,15 +105,15 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	{
 		console.log('въркс');
 
-		//TODO make ajax call to change user seat
+		//TODO make ajax call to change user desk
 	};
 
 	UserInfoCtrl.prototype.leaveDesk = function()
 	{
 		console.log('въркс too');
 
-		this.seat = '';
-		//TODO make ajax call to change user seat
+		this.desk = '';
+		//TODO make ajax call to change user desk
 	};
 
 	return UserInfoCtrl;
