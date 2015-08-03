@@ -19,5 +19,6 @@ Route::get( '/', function()
 Route::group(['prefix' => 'api'], function () {
 
     Route::resource('desks', 'DeskController');
+	Route::resource('user', 'UserController');
 
 });
