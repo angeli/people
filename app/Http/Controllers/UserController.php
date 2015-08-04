@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Database\DatabaseManager;
+
+use App\Model\User;
+use App\Model\Desk;
 
 
 class UserController extends Controller
@@ -17,26 +21,31 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function index(Request $request, DatabaseManager $db)
+    public function index(DatabaseManager $db)
     {
+		$users = User::select('u_id', 'u_name', 'e-mail', 'location',
+				'desks.id as desk', 'departmants.job', 'departmants.dep')
+			->leftJoin('desks', 'users_id', '=', 'u_id')
+			->join('departmants', 'departmants.id', '=', 'departmant_id')
+
+			# not quit / fired
+			->where('departmant_id', '!=', 21)
+			->get()
+			->keyBy('u_id')
+			->toArray();
+
         # $host = explode('.', gethostbyaddr($request->server->get('REMOTE_ADDR')));
 		# $host = $host[0];
 
 		$host = getenv('COMPUTERNAME');
-
-		$res = $db->table('computers')->select('u_name', 'user_id')->join('users', 'u_id', '=', 'user_id')->where('name', '=', $host)->first();
-
-		$ret = [];
+		$res = $db->table('computers')->select('user_id')->where('name', '=', $host)->first();
 
 		if( $res ) {
-			$ret = [
-				'name' => $res->u_name,
-				'success' => $this->checkUser($res->user_id)
-			];
+			$users[$res->user_id]['current'] = true;
+			$users[$res->user_id]['edit'] = $this->checkUser($res->user_id);
 		}
-		
-		return response()
-			->json($ret);
+
+		return response()->json($users);
     }
 
 
@@ -104,7 +113,50 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return new Response("Not Implemented", 501);
+		$from = $request->input('from', '');
+		$to = $request->input('to', '');
+
+		if( empty($id) || $from === '' || $to === '' ) {
+			return new Response("Mandatory parameter(s) are missing.", 405);
+		}
+
+		try {
+
+			$user = User::findOrFail($id);
+
+			$desk = $user->desk;
+
+			if( $desk === null )
+			{
+				$desk = new Desk;
+				$desk->id = 0;
+				$desk->users_id = $id;
+			}
+
+			if( $from != $desk->id ) {
+				return new Response("Out of sync, user was moved someplace else already.", 409);
+			}
+
+			if( $to != 0 ) {
+				$desk = Desk::findOrFail($to);
+
+				if( $desk->users_id != 0 ) {
+					return new Response("Out of sync, target desk is not empty.", 409);
+				}
+			} else {
+				$id = 0;
+			}
+
+			$desk->users_id = intval($id);
+			$desk->save();
+
+			return response()->json( $desk->toArray() );
+
+
+		}
+		catch (\Exception $e) {
+			return new Response("There was an error while processing the update request: " . $e->getMessage(), 500);
+		}
     }
 
     /**
