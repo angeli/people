@@ -1,5 +1,11 @@
-<div id="UserSearch">
+<div id="UserSearch" class="input-group input-group-sm">
 	
-	<select2 ng-if="users.length > 0" settings="select2_settings" ng-model="selected"></select2>
+	<span class="input-group-addon">
+		<i class="fa fa-bars"></i>
+	</span>
 	
+	<select2 ng-if="users.length > 0" settings="select2_settings" ng-model="selected" class="form-control"></select2>
+	<span class="input-group-addon">
+		<i class="fa fa-search"></i>
+	</span>
 </div>

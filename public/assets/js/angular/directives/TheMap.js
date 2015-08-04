@@ -52,6 +52,21 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 			scope.$emit("map.desk-selected", [map, desk]);			
 		});
 		
+		// Bind Wheel Zoom
+		map.on('mousewheel', function(e)
+		{
+			var delta = e.originalEvent.wheelDelta;
+			
+			if(e.ctrlKey)
+			{
+				e.preventDefault();
+				map.zoomIn(delta/10);
+			}
+			else
+			{
+				console.log("Wheelin' :  " + delta);				
+			}
+		});
 		
 	}
 	
