@@ -45,7 +45,6 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.lname	= name[1];
 	};
 
-
 	UserInfoCtrl.prototype.releseLock = function()
 	{
 		if(this.admin == true)
