@@ -7,6 +7,9 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 	{
 		this.zoom_val	= 100;
 		this.$container = $(container).first();
+		
+		this.max_zoom	= 200;
+		this.min_zoom	= 1;
 				
 		if(this.$container.length != 1 )
 		{
@@ -264,20 +267,29 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 	{
 		if(typeof zoom !== "undefined")
 		{
+			// Constrain zoom
+			if(zoom > this.max_zoom)
+				zoom = this.max_zoom;
+			
+			if(zoom < this.min_zoom)
+				zoom = this.min_zoom;
+			
 			console.log("Zoom", zoom);
 
-			var new_zoom = ["scale(", zoom/100, ",", zoom/100, ")"].join('');
-			var old_zoom = ["scale(", this.zoom_val/100, ",", this.zoom_val/100, ")"].join('');
+			var width	= this.root().attr("width");
+			var height	= this.root().attr("height"); 
 
-			this.root().children("g").each(function(i, g)
+			var scale = 
 			{
-				var transform = $(g).attr("transform") || '';
+				width : (width * zoom / 100) + 'px',
+				height: (height* zoom / 100) + 'px',
+			}
 
-				transform  = transform.replace(old_zoom, ""); 
-				transform  = new_zoom + " " + transform;
+			this.$container.find('svg').css(scale);
+			
+			console.log("Scale", scale);
 
-				$(g).attr("transform", transform);
-			});
+
 
 			this.zoom_val = zoom;
 			
