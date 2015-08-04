@@ -54,8 +54,8 @@
 			<!--The Map-->
 			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>		
 
-			<div ng-controller="UserInfoCtrl as uiCtrl">
-				<div class="user-info" ng-if="uiCtrl.desk">
+			<div ng-show="uiCtrl.desk" class="UserCtrl" ng-controller="UserInfoCtrl as uiCtrl">
+				<div class="user-info">
 					<div class="row">
 						<div class="col-md-4"><img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" /></div>
 
@@ -94,9 +94,8 @@
 				</div>
 			</div>
 
-			
-						
-			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
+									
+			<search ng-if="mainCtrl.isReady() || true" map="mainCtrl.map"></search> 
 			
 			
 		</div>
