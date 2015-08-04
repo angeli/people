@@ -274,8 +274,6 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 			if(zoom < this.min_zoom)
 				zoom = this.min_zoom;
 			
-			console.log("Zoom", zoom);
-
 			var width	= this.root().attr("width");
 			var height	= this.root().attr("height"); 
 
@@ -287,10 +285,6 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 
 			this.$container.find('svg').css(scale);
 			
-			console.log("Scale", scale);
-
-
-
 			this.zoom_val = zoom;
 			
 			this.$container.trigger("map.zoomed", [this, 1]);

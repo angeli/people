@@ -21,7 +21,11 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 	{
 		element.on('change', function(e)
 		{
-			scope.map.selectDesk(e.val);
+			try
+			{
+				scope.map.selectDesk(e.val);
+			}
+			catch(e){}
 			
 			// Clear the value immediately after selection
 			$(element).find('.select2-container').select2("val", "");
@@ -31,17 +35,20 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 	
 	Search.prototype.controller = function($scope, PeopleApi)
 	{
-		console.log("Search Controller", $scope);
-		
-		var s2_users = [];
+		var self = this;	
 		
 		$scope.select2_settings = 
 		{
 			multiple				: true,
 			maximumSelectionSize	: 1, 
-			data					: function()
+			
+			query : function(query)
 			{
-				return {results : s2_users };
+				console.log("Query", query);
+				
+				var result = self.searchByAny($scope, query.term);
+				
+				query.callback({results: result} );
 			},
 		}
 		
@@ -50,24 +57,89 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 		PeopleApi.getAllDesks().then(function(users)
 		{
 			$scope.users = users;
-												
-			for(var i in users)
-			{
-				var user = users[i];
-				
-				s2_users.push(
-				{
-					id		: user.id,
-					text	: user.u_name,
-				});
-			}
 			
-			console.log("S2 users", s2_users);
+			//self.createBogusData($scope);						
 			
-			$scope.$evalAsync();
-			
+			$scope.$evalAsync();			
 		});	
 		
+	}
+	
+	/**
+	 * Fill the users with bogus data for testing purposes
+	 * 
+	 * @param {type} $scope
+	 * @returns {undefined}
+	 */
+	Search.prototype.createBogusData = function($scope)
+	{
+		for(var i = 0; i < 400; i++)
+		{
+			if(i >= 138 && i <= 145 || i == 157 )
+				continue;
+
+			$scope.users.push(
+			{
+				id			: i,
+				u_name		: "Some User Name " + i,
+				name		: "Some bogus name " + i,
+				department	: "Department " + i,
+				position	: "Some Position " + i,
+			});
+		}
+	}
+	
+	/**
+	 * 
+	 * @param {type} $scope
+	 * @param {type} term
+	 * @returns {Array|Search_L2.AbstractDir.searchByAny.out}
+	 */
+	Search.prototype.searchByAny = function($scope, term)
+	{
+		var out = [];
+		
+		var data = $scope.users || [];
+		var hash = {};
+		
+		for(var i in data)
+		{
+			var user = null;
+			
+			// Search by pretty much anything
+			for(var key in data[i])
+			{
+				if((data[i][key] + '').match(term))
+				{
+					user = {
+						id		: data[i].id,
+						text	: data[i].u_name, 
+					}					
+					break;
+				}
+			}
+			
+			// Check if search terms corresponds to an empty desk
+			if(!user && term|0 > 0 && $scope.map.getDesk(term|0) !== null)
+			{
+				if(hash[term])
+					continue;
+				
+				user = {
+					id		: term|0,
+					text	: "Empty Desk (" + term + ")"
+				}
+			}
+			
+			// Add user if user is object
+			if(user)
+			{
+				out.push(user);
+				hash[user.id] = true;
+			}
+		}
+		
+		return out;
 	}
 	
 	
