@@ -22,7 +22,7 @@ class DeskController extends Controller
      */
     public function index()
     {
-		$desks = Desk::leftJoin('users', 'users_id', '=', 'u_id')->where('users_id', '<>', 0)->get()->toArray();
+		$desks = Desk::leftJoin('users', 'users_id', '=', 'u_id')->join('departmants', 'departmants.id', '=', 'departmant_id')->where('users_id', '<>', 0)->get()->toArray();
 
 		$ret = [];
 		foreach( $desks as $k => $d )
