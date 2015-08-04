@@ -11,14 +11,38 @@ and open the template in the editor.
 #UserSearch
 {
 	width: 330px;
-	height: 50px;
+	max-height: 32px;
 	
 	position: absolute;
 	bottom: 15px;	
 	margin: 20px;
+	border-radius: 20px !important;
 }
 
 #UserSearch .select2-container
 {
-	width: 100% !important;
+	height: 100% !important;
+}
+
+#UserSearch .select2-choices
+{
+	border				: none !important;
+	background-color	: transparent;
+	background-image	: none; 
+	box-shadow			: none; 
+	height				: 100%; 
+}
+
+#UserSearch .input-group-addon:last-child
+{
+	color : white;
+	background-color: #007aff;
+	border-radius: 0 15px 15px 0;
+	min-width: 20px;
+}
+#UserSearch .input-group-addon:first-child
+{
+	background-color: white;
+	border-radius: 15px 0 0 15px;
+	min-width: 20px;
 }
