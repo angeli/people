@@ -24,7 +24,7 @@ class DeskController extends Controller
     {
 		$desks = Desk::select('users.*', 'desks.*', 'departmants.job', 'departmants.dep')->leftJoin('users', 'users_id', '=', 'u_id')
 			->join('departmants', 'departmants.id', '=', 'departmant_id')
-			->where('users_id', '<>', 0)
+			# ->where('users_id', '<>', 0)
 			->get()
 			->toArray();
 

@@ -66,10 +66,14 @@
 					</div>
 
 					<div class="row user-office-info">
-						<div class="col-md-7">
+						<div class="col-md-10">
 							<div class="user-team">Team: {{uiCtrl.team}}</div>
-							<div class="user-team">Departament: {{uiCtrl.department}}</div>
-
+							<div class="user-team">Department: {{uiCtrl.department}}</div>
+						</div>
+					</div>
+					
+					<div class="row user-office-info">
+						<div class="col-md-6">
 							<div class="user-team" ng-if="!uiCtrl.edit">Office desk: {{uiCtrl.desk}}</div>
 							<div class="user-team edit" ng-if="uiCtrl.edit">
 								Office desk: <input type="text" ng-model="uiCtrl.desk" size="2">

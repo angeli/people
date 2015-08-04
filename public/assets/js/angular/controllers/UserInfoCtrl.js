@@ -3,17 +3,16 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 {
 	var UserInfoCtrl = function($scope, PeopleApi)
 	{
-		//var desks = PeopleApi.getDesk(140);
-
 		console.log($scope);
 		this.apiService		= PeopleApi;
 		var self			= this;
 		this.edit			= false;
-		this.admin			= true;
 		this.is_locked		= true
 		this.scope			= $scope;
-
 		this.desk			= false;
+		this.empty			= false;
+
+		this.checkAdmin();
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
@@ -22,6 +21,8 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			var desk_id = desk.id();
 
 			self.openDesk(desk_id);
+
+			$scope.$evalAsync();
 
 			console.log("User Info Desk Selected: " + desk.id(), map, desk);
 		});
@@ -45,7 +46,6 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.lname	= name[1];
 	};
 
-
 	UserInfoCtrl.prototype.releseLock = function()
 	{
 		if(this.admin == true)
@@ -65,39 +65,51 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 	UserInfoCtrl.prototype.openDesk = function(desk)
 	{
+		var person = this.apiService.getDesk(desk);
+
+		if(typeof person === 'object')
+		{
+			this.name		= person.u_name;
+			this.user_id	= person.u_id;
+			this.position	= person.job;
+			this.department	= person.dep;
+			this.team		= person.location;
+			this.mail		= person['e-mail'];
+			this.desk		= desk;
+			this.setNames();
+		}
+		else
+		{
+			this.empty = true;
+		}
+
+		console.log(this.desk);
+	};
+
+
+	UserInfoCtrl.prototype.checkAdmin = function()
+	{
 		var self = this;
 
+		self.admin = false;
 
-		this.apiService.getDesk(desk).then(
+		this.apiService.isAdminUser().then(
 			function(data)
 			{
-				self.name			= data.u_name;
-				self.user_id		= data.u_id;
-				self.position		= data.department.job;
-				self.department		= data.department.dep;
-				self.team			= data.location;
-				self.mail			= data['e-mail'];
-				self.desk			= desk;
-				self.setNames();
-				console.log(data);
+				if(data.success == true)
+				{
+					self.admin = true;
+				}
 			},
 			function(fail)
 			{
-				self.name			= '';
-				self.user_id		= '';
-				self.position		= '';
-				self.department	= '';
-				self.team			= '';
-				self.mail			= '';
-				self.desk			= false;
+				self.admin = false;
 			}
 //			,function(update)
 //			{
 //			}
 		);
-
-
-	};
+	}
 
 	UserInfoCtrl.prototype.chengeDesk = function()
 	{
