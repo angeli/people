@@ -108,12 +108,17 @@
 
 			<div ng-if="mainCtrl.isReady()" class="bottom-info">
 
-				<strong class="deskless">
-					? people without seats
+				<strong ng-if="mainCtrl.deskless_people > 0" class="deskless"> 
+					{{mainCtrl.deskless_people}} people without seats
 				</strong>
 
-				<strong class="free-desks">
-					{{mainCtrl.freeDesksCount()}} free seats
+				<strong ng-if="mainCtrl.free_desks > 0" class="free-desks">
+					{{mainCtrl.free_desks}} free seats
+				</strong>
+				
+				<strong ng-if="mainCtrl.free_desks == 0" class="no-free-desks">
+					<i class="fa fa-warning"></i>
+					No free desks
 				</strong>
 
 			</div>

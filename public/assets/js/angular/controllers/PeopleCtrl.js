@@ -62,13 +62,32 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			}
 			
 			var desks = self.map.desks;
+			self.free_desks = 0;
 			
 			for(var d in desks)
 			{
 				var desk = desks[d];
+				var free = hash[desk.id()] !== true;
+				desk.isFree(free);
 				
-				desk.isFree(hash[desk.id()] !== true);
+				if(free)
+				{
+					self.free_desks++;
+				}
 			}
+			
+			// Count Deskless users
+			self.deskless_people = 0;
+									
+			for(var i in users)
+			{
+				if((users[i].desk|0) === 0)
+				{
+					self.deskless_people++;
+				}			
+			}	
+			
+			$scope.$evalAsync();
 			
 			return def.resolve(users);
 		});
@@ -82,25 +101,7 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 	{
 		return typeof this.map !== "undefined";
 	}
-	
-	/**
-	 * Returns the number of desks currently free
-	 * 
-	 * @returns {Number}
-	 */
-	PeopleCtrl.prototype.freeDesksCount = function()
-	{
-		var count = 0;
 		
-		if(this.map)
-		{
-			return this.map.getFreeDesks().length;
-		}
-		
-		return false;
-	}
-
-	
 	return PeopleCtrl;
 });
 

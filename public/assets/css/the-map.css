@@ -84,7 +84,7 @@ and open the template in the editor.
 		position: absolute;
 		bottom: 15px;
 		height: 30px;
-		border: 1px solid black;
+		border: 1px solid silver;
 		padding: 5px;
 		border-radius: 0 15px 0 0;
 		background: white;
@@ -100,10 +100,13 @@ and open the template in the editor.
 		color : #00f115;
 	}
 	
-	.bottom-info .deskless
+	.bottom-info .deskless,
+	.bottom-info .no-free-desks
 	{
 		color: Red;
 	}
+	
+	
 	
 	
 			

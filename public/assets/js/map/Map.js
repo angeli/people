@@ -36,6 +36,13 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 			onLoad: function()
 			{
 				self.$container.kinetic();
+				
+				// Because of Firefox
+				self.$container.on("mousedown", function(e)
+				{
+					e.preventDefault();
+				});
+				
 				def.resolve(self);
 			}
 		});
