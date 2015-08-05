@@ -12,13 +12,14 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.desk			= false;
 		this.empty			= false;
 
-		this.checkAdmin();
+		this.free_desks		= [140, 142, 144];
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
-			var map		= args[0];
-			var desk	= args[1];
-			var desk_id = desk.id();
+			var map				= args[0];
+			var desk			= args[1];
+			var desk_id			= desk.id();
+			self.selected_desk	= desk;
 
 			self.openDesk(desk_id);
 
@@ -65,8 +66,10 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 	UserInfoCtrl.prototype.openDesk = function(desk)
 	{
+		console.log(desk);
+		this.checkAdmin();
 		var person = this.apiService.getDesk(desk);
-
+console.log(person);
 		if(typeof person === 'object')
 		{
 			this.name		= person.u_name;
@@ -89,41 +92,44 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 	UserInfoCtrl.prototype.checkAdmin = function()
 	{
-		var self = this;
-
-		self.admin = false;
-
-		this.apiService.isAdminUser().then(
-			function(data)
-			{
-				if(data.success == true)
-				{
-					self.admin = true;
-				}
-			},
-			function(fail)
-			{
-				self.admin = false;
-			}
-//			,function(update)
-//			{
-//			}
-		);
+		this.admin = this.apiService.isAdminUser();
 	}
 
 	UserInfoCtrl.prototype.chengeDesk = function()
 	{
-		console.log('въркс');
+		var self = this;
 
-		//TODO make ajax call to change user desk
+		this.apiService.changeDesk(self.user_id, self.desk, self.destination_desk).then(
+			function(data)
+			{
+				console.log('success', data);
+				self.selected_desk.isFree(true);
+			},
+			function(fail)
+			{
+				console.log('fail', fail);
+			}
+		);
 	};
 
 	UserInfoCtrl.prototype.leaveDesk = function()
 	{
-		console.log('въркс too');
+		var self = this;
+console.log(self.user_id, self.desk);
+		this.apiService.changeDesk(self.user_id, self.desk, 0).then(
+			function(data)
+			{
+				console.log('success', data);
+				self.selected_desk.isFree(true);
+				self.desk = '';
+			},
+			function(fail)
+			{
+				console.log('fail', fail);
+			}
+		);
 
-		this.desk = '';
-		//TODO make ajax call to change user desk
+
 	};
 
 	return UserInfoCtrl;

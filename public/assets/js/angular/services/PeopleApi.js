@@ -5,38 +5,29 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		this.http	= $http;
 		this.q		= $q;
 
-		this.people = [];
-		this.loadPeople();
+		this.loadPeople(false);
 	};
 
 	PeopleApi.prototype = new AbstractService;
 
-	PeopleApi.prototype.loadPeople = function()
+	PeopleApi.prototype.loadPeople = function(forced)
 	{
 		var self = this;
 
-		//self.people = [];
-
-		this.getAllDesks().then(
-			function(data)
-			{
-				console.log(data);
-				self.people = data;
-//				for (i in data)
-//				{
-//					var person = data[i];
-//
-//					self.people.push({id: person.id, name: person.name, user_id: person.user_id, position: person.job, department: person.dep, mail: person['e-mail'], desk: person.id});
-//				}
-			},
-			function(fail)
-			{
-				self.people = [];
-			}
-			,function(update)
-			{
-			}
-		);
+		if(typeof self.people !== 'object' || forced)
+		{
+			this.getAllDesks().then(
+				function(data)
+				{
+					console.log(data);
+					self.people = data;
+				},
+				function(fail)
+				{
+					self.people = [];
+				}
+			);
+		}
 	};
 
 	PeopleApi.prototype.getAllDesks = function()
@@ -46,7 +37,7 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		var def		= this.q.defer();
 
 		setTimeout(function() {
-			self.http.get('/api/desks', options)
+			self.http.get('/api/user', options)
 			.success(function(result)
 			{
 				console.log("Success", result);
@@ -60,17 +51,18 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		}, 1000);
 
 		return def.promise;
+
 	};
 
 	PeopleApi.prototype.getDesk = function(desk)
 	{
-		if(this.people.length > 0)
+		if(typeof this.people === 'object')
 		{
 			for(i in this.people)
 			{
 				var person = this.people[i];
 
-				if(person.id == desk)
+				if(person.desk == desk)
 				{
 					return person;
 				}
@@ -80,25 +72,49 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		return false;
 	};
 
-	PeopleApi.prototype.isAdminUser = function()
+	PeopleApi.prototype.changeDesk = function(user, from, to)
 	{
-		var self	= this;
-		var options	= [];
-		var def		= this.q.defer();
-
+		var self		= this;
+		var options		= {};
+		options.from	= parseInt(from);
+		options.to		= parseInt(to);
+		var def			= this.q.defer();
+		var uri			= '/api/user/' + user;
+console.log(options);
 		setTimeout(function() {
-			self.http.get('/api/user', options)
+			self.http.put(uri, options)
 			.success(function(result)
 			{
+				console.log("Success", result);
 				def.resolve(result);
 			})
 			.error(function(result)
 			{
+				this.loadPeople(true);
+				console.log("Failed!", result);
 				def.reject(result);
 			});
 		}, 1000);
 
 		return def.promise;
+	}
+
+	PeopleApi.prototype.isAdminUser = function()
+	{
+		if(typeof this.people === 'object')
+		{
+			for(i in this.people)
+			{
+				var person = this.people[i];
+
+				if( ("current" in person) && person.edit === true)
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	return PeopleApi;

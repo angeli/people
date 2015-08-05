@@ -14,11 +14,33 @@
     width: 330px;
 }
 
+.free-desks {
+	background: white;
+    box-shadow: 0 0 5px 2px #888888;
+    border-radius: 5px;
+    height: 205px;
+	left: 340px;
+	bottom: -150px;
+    position: absolute;
+    width: 330px;
+	padding: 10px;
+}
+
 .user-picture {
-	width: 120px;
-	height: 100px;
+	max-width: 120px;
+	max-height: 100px;
 	margin-left: 10px;
 	margin-top: 10px;
+
+}
+
+.big-picture {
+	position: relative;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .user-name {
