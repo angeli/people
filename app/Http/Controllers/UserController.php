@@ -123,34 +123,41 @@ class UserController extends Controller
 		try {
 
 			$user = User::findOrFail($id);
+			$old_desk = $user->desk;
 
-			$desk = $user->desk;
+			#print_r( $old_desk->toArray() );
 
-			if( $desk === null )
-			{
-				$desk = new Desk;
-				$desk->id = 0;
-				$desk->users_id = $id;
-			}
-
-			if( $from != $desk->id ) {
+			if( $old_desk != null && $from != $old_desk->id ) {
 				return new Response("Out of sync, user was moved someplace else already.", 409);
 			}
 
 			if( $to != 0 ) {
-				$desk = Desk::findOrFail($to);
+				$new_desk = Desk::findOrFail($to);
 
-				if( $desk->users_id != 0 ) {
+				if( $new_desk->users_id != 0 ) {
 					return new Response("Out of sync, target desk is not empty.", 409);
 				}
 			} else {
 				$id = 0;
 			}
 
-			$desk->users_id = intval($id);
-			$desk->save();
+			$ret = [];
 
-			return response()->json( $desk->toArray() );
+			if( $old_desk != null ) {
+				$old_desk->users_id = 0;
+				$old_desk->save();
+				$ret['old'] = $old_desk->toArray();
+			}
+
+			if( isset($new_desk) )
+			{
+				$new_desk->users_id = intval($id);
+				$new_desk->save();
+
+				$ret['new'] = $new_desk->toArray();
+			}
+
+			return response()->json( $ret );
 
 
 		}
