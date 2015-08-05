@@ -90,7 +90,7 @@ console.log(options);
 			})
 			.error(function(result)
 			{
-				this.loadPeople(true);
+				self.loadPeople(true);
 				console.log("Failed!", result);
 				def.reject(result);
 			});
