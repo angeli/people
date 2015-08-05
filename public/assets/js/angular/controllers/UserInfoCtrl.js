@@ -12,7 +12,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.desk			= false;
 		this.empty			= false;
 
-		this.free_desks		= [140, 142, 144];
+		this.free_desks		= [157, 142, 140];
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
@@ -83,6 +83,15 @@ console.log(person);
 		}
 		else
 		{
+			this.name		= '';
+			this.user_id	= '';
+			this.position	= '';
+			this.department	= '';
+			this.team		= '';
+			this.mail		= '';
+			this.desk		= '';
+			this.fname		= '';
+			this.lname		= '';
 			this.empty = true;
 		}
 
