@@ -91,7 +91,7 @@
 					<div class="row user-mail">
 						<div><a href="mailto:{{uiCtrl.mail}}">{{uiCtrl.mail}}</a></div>
 					</div>
-					{{uiCtrl.empty}}
+
 				</div>
 
 				<div class="free-desks-select" ng-if="uiCtrl.edit && uiCtrl.desk !== false && uiCtrl.desk > 0">
