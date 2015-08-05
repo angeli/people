@@ -39,14 +39,14 @@
 						<ul class="nav navbar-nav">
 							<!--Possible nav buttons here-->
 						</ul>
-						
+
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
 			</nav>
 
 
 			<!--The Map-->
-			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>		
+			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>
 
 			<div ng-show="uiCtrl.desk" class="UserCtrl" ng-controller="UserInfoCtrl as uiCtrl">
 				<div class="user-info">
@@ -71,12 +71,16 @@
 							<div class="user-team">Department: {{uiCtrl.department}}</div>
 						</div>
 					</div>
-					
+
 					<div class="row user-office-info">
 						<div class="col-md-6">
 							<div class="user-team" ng-if="!uiCtrl.edit">Office desk: {{uiCtrl.desk}}</div>
 							<div class="user-team edit" ng-if="uiCtrl.edit">
-								Office desk: <input type="text" ng-model="uiCtrl.desk" size="2">
+								<!--Office desk: <input type="text" ng-model="uiCtrl.desk" size="2">-->
+								Office desk:
+								<select ng-model="uiCtrl.destination_desk">
+									<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
+								</select>
 							</div>
 
 						</div>
@@ -90,21 +94,28 @@
 						<div><a href="mailto:{{uiCtrl.mail}}">{{uiCtrl.mail}}</a></div>
 					</div>
 				</div>
+
+				<div class="free-desks-select" ng-if="uiCtrl.edit">
+					Available desks:
+					<div ng-repeat="free_desk in uiCtrl.free_desks">
+						<div ng-model="uiCtrl.destination_desk" ng-click="uiCtrl.destination_desk = free_desk; uiCtrl.chengeDesk()">{{free_desk}}</div>
+					</div>
+				</div>
 			</div>
 
-									
-			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search> 
-			
+
+			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
+
 			<div ng-if="mainCtrl.isReady()" class="bottom-info">
-								
+
 				<strong class="deskless">
-					? people without seats 
+					? people without seats
 				</strong>
-				
+
 				<strong class="free-desks">
 					{{mainCtrl.freeDesksCount()}} free seats
 				</strong>
-				
+
 			</div>
 		</div>
 

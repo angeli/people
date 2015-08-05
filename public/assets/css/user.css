@@ -14,13 +14,13 @@
     width: 330px;
 }
 
-.free-desks {
+.free-desks-select {
 	background: white;
     box-shadow: 0 0 5px 2px #888888;
     border-radius: 5px;
     height: 205px;
 	left: 340px;
-	bottom: -150px;
+	bottom: 0px;
     position: absolute;
     width: 330px;
 	padding: 10px;
@@ -31,7 +31,6 @@
 	max-height: 100px;
 	margin-left: 10px;
 	margin-top: 10px;
-
 }
 
 .big-picture {
