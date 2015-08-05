@@ -3,23 +3,34 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 {
 	"use strict";
 	
-	var PeopleCtrl = function($scope, $interval, PeopleApi)
+	var PeopleCtrl = function($scope, $interval, PeopleApi, $q)
 	{
 		var self = this;
-		this.PeopleApi = PeopleApi;
+		this.$q			= $q;
+		this.PeopleApi	= PeopleApi;
+		
+		var def	= $q.defer();
+		this.on_map_loaded = def.promise;
 		
 		$scope.$on("map.ready", function(e, args)
 		{
 			self.map = args[0];
+			self.updateData($scope);
+			
+			def.resolve(self.map);
+		});
+		
+		$scope.$on("update_users", function(e, args)
+		{
 			self.updateData($scope);
 		});
 		
 		// Refresh data
 		$interval(function()
 		{
-			self.updateData($scope);
+			$scope.$broadcast("update_users");
 			
-		}, 30000);
+		}, 10000);
 		
 	}
 	
@@ -30,8 +41,14 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 	{
 		var self = this;
 		
-		this.PeopleApi.getAllDesks().then(function(users)
+		var def = this.$q.defer();
+		
+		this.$q.all([this.on_map_loaded, this.PeopleApi.getAllDesks()])
+		.then(function(args)
 		{
+			var map		= args[0];
+			var users	= args[1];
+			
 			$(".Desk").addClass("free");
 			
 			$scope.users = users;
@@ -52,8 +69,14 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 				
 				desk.isFree(hash[desk.id()] !== true);
 			}
+			
+			return def.resolve(users);
 		});
+		
+		return def.promise;
 	}
+	
+	
 	
 	PeopleCtrl.prototype.isReady = function()
 	{
@@ -71,15 +94,7 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 		
 		if(this.map)
 		{
-			for(var i in this.map.desks)
-			{
-				if(this.map.desks[i].isFree())
-				{
-					count++;
-				}
-			}
-			
-			return count;
+			return this.map.getFreeDesks().length;
 		}
 		
 		return false;

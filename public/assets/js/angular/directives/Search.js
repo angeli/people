@@ -37,6 +37,8 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 	{
 		var self = this;	
 		
+		this.PeopleApi = PeopleApi;
+		
 		$scope.select2_settings = 
 		{
 			multiple				: true,
@@ -44,11 +46,11 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			
 			query : function(query)
 			{
-				console.log("Query", query);
-				
-				var result = self.searchByAny($scope, query.term);
-				
-				query.callback({results: result} );
+				self.PeopleApi.getAllDesks().then(function(users)
+				{
+					var result = self.searchByAny(users, query.term);
+					query.callback({results: result} );
+				});		
 			},
 		}
 		
@@ -91,15 +93,14 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 	
 	/**
 	 * 
-	 * @param {type} $scope
-	 * @param {type} term
-	 * @returns {Array|Search_L2.AbstractDir.searchByAny.out}
+	 * @param {Scope} $scope
+	 * @param {String} term
+	 * @returns {Array}
 	 */
-	Search.prototype.searchByAny = function($scope, term)
+	Search.prototype.searchByAny = function(data, term)
 	{
 		var out = [];
 		
-		var data = $scope.users || [];
 		var hash = {};
 		
 		for(var i in data)
