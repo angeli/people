@@ -5,42 +5,24 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		this.http	= $http;
 		this.q		= $q;
 
-		this.loadPeople(false);
+		this.getAllDesks(false);
 	};
 
 	PeopleApi.prototype = new AbstractService;
 
-	PeopleApi.prototype.loadPeople = function(forced)
-	{
-		var self = this;
-
-		if(typeof self.people !== 'object' || forced)
-		{
-			this.getAllDesks().then(
-				function(data)
-				{
-					console.log(data);
-					self.people = data;
-				},
-				function(fail)
-				{
-					self.people = [];
-				}
-			);
-		}
-	};
-
-	PeopleApi.prototype.getAllDesks = function()
+	PeopleApi.prototype.getAllDesks = function(forced)
 	{
 		var self	= this;
 		var options = [];
 		var def		= this.q.defer();
 
-		setTimeout(function() {
+		if(typeof self.people !== 'object' || forced)
+		{
 			self.http.get('/api/user', options)
 			.success(function(result)
 			{
 				console.log("Success", result);
+				self.people = result;
 				def.resolve(result);
 			})
 			.error(function(result)
@@ -48,7 +30,11 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 				console.log("Failed!", result);
 				def.reject(result);
 			});
-		}, 1000);
+		}
+		else
+		{
+			def.resolve(self.people);
+		}
 
 		return def.promise;
 
@@ -91,7 +77,7 @@ console.log(options);
 			})
 			.error(function(result)
 			{
-				self.loadPeople(true);
+				self.getAllDesks(true);
 				console.log("Failed!", result);
 				def.reject(result);
 			});

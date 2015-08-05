@@ -5,6 +5,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	{
 		console.log($scope);
 		this.apiService			= PeopleApi;
+		this.scope				= $scope;
 		var self				= this;
 		this.edit				= false;
 		this.is_locked			= true
@@ -70,8 +71,10 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	{
 		console.log(desk);
 		this.checkAdmin();
-		var person = this.apiService.getDesk(desk);
-console.log(person);
+		this.edit		= false;
+		this.is_locked	= true
+		var person		= this.apiService.getDesk(desk);
+
 		if(typeof person === 'object')
 		{
 			this.name		= person.u_name;
@@ -117,9 +120,18 @@ console.log(person);
 			function(data)
 			{
 				console.log('success', data);
-				self.selected_desk.isFree(true);
-				self.empty = false;
-				self.openDesk(self.destination_desk);
+
+				self.apiService.getAllDesks(true).then(
+					function(people)
+					{
+						self.selected_desk.isFree(false);
+						self.empty = false;
+						self.openDesk(self.destination_desk);
+						self.scope.$evalAsync();
+					}
+				);
+
+
 			},
 			function(fail)
 			{
@@ -128,17 +140,24 @@ console.log(person);
 		);
 	};
 
-//deprecate it - use changeDesk
 	UserInfoCtrl.prototype.leaveDesk = function()
 	{
 		var self = this;
-console.log(self.user_id, self.desk);
+
 		this.apiService.changeDesk(self.user_id, self.desk, 0).then(
 			function(data)
 			{
 				console.log('success', data);
-				self.selected_desk.isFree(true);
-				self.desk = '';
+
+				self.apiService.getAllDesks(true).then(
+					function(people)
+					{
+						self.selected_desk.isFree(true);
+						self.empty = false;
+						self.desk = '';
+						self.scope.$evalAsync();
+					}
+				);
 			},
 			function(fail)
 			{

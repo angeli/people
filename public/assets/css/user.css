@@ -35,9 +35,6 @@
     width: 330px;
 	padding: 20px;
 	overflow-y: scroll;
-	-webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
 }
 
 .user-picture {
