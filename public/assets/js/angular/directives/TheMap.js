@@ -40,10 +40,7 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 					map.selectDesk(new_desk);
 				}
 			}
-			catch(e)
-			{
-				
-			}
+			catch(e) { }
 		});
 		
 		// Bind selection change
@@ -53,18 +50,29 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 		});
 		
 		// Bind Wheel Zoom
-		map.on('mousewheel', function(e)
+		map.on('wheel', function(e)
 		{
-			var delta = e.originalEvent.wheelDelta;
+			var delta = e.originalEvent.deltaY * -1;
 			
 			if(e.ctrlKey)
 			{
 				e.preventDefault();
+				e.originalEvent.preventDefault();
 				map.zoomIn(delta/10);
-			}
-			else
+			}	
+		});
+		
+		$("body").on("keydown", function(e)
+		{
+			e = e || event;
+			console.log(e.keyCode, String.fromCharCode(e.keyCode), e);
+			
+			// Reset map zoom
+			if(e.ctrlKey && e.keyCode == 96)
 			{
-				console.log("Wheelin' :  " + delta);				
+				e.preventDefault();
+				map.zoom(100);
+				
 			}
 		});
 		

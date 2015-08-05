@@ -14,14 +14,18 @@ and open the template in the editor.
 	max-height: 32px;
 	
 	position: absolute;
-	bottom: 15px;	
+	bottom: 65px;	
 	margin: 20px;
 	border-radius: 20px !important;
+	
+	box-shadow: 0 3px 15px 1px rgba(0,0,0,0.5);
 }
 
 #UserSearch .select2-container
 {
 	height: 100% !important;
+	border-left: none;
+	border-right: none;
 }
 
 #UserSearch .select2-choices
@@ -37,6 +41,7 @@ and open the template in the editor.
 {
 	color : white;
 	background-color: #007aff;
+	border-color: #007aff;
 	border-radius: 0 15px 15px 0;
 	min-width: 20px;
 }
@@ -45,4 +50,6 @@ and open the template in the editor.
 	background-color: white;
 	border-radius: 15px 0 0 15px;
 	min-width: 20px;
+	border-right: none;
 }
+

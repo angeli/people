@@ -10,12 +10,21 @@ and open the template in the editor.
 
 	.map-container
 	{
-		width		: 100%; 
-		height		: calc(100vh - 52px);
-		overflow	: scroll;		
+		width			: 100%; 
+		height			: calc(100vh - 52px);
+		overflow		: scroll;		
 		
-		margin-top	: -20px;
-		position	: relative; 
+		margin-top		: -20px;
+		position		: relative; 
+	}
+	
+	.map-container svg
+	{
+		display		: block;
+		margin		: auto;
+		position	: relative;
+				
+		top: 0; left: 0; right:0; bottom: 0;
 	}
 
 	.Desk
@@ -62,6 +71,38 @@ and open the template in the editor.
 	.Department:hover
 	{
 		opacity: 1 !important;;
+	}
+	
+	*[ng-cloak],
+	.ng-cloak
+	{
+		display:none;
+	}
+	
+	.bottom-info
+	{
+		position: absolute;
+		bottom: 15px;
+		height: 30px;
+		border: 1px solid black;
+		padding: 5px;
+		border-radius: 0 15px 0 0;
+		background: white;
+	}
+	
+	.bottom-info > * 
+	{
+		margin : 2px 10px;
+	}
+	
+	.bottom-info .free-desks
+	{
+		color : #00f115;
+	}
+	
+	.bottom-info .deskless
+	{
+		color: Red;
 	}
 	
 	

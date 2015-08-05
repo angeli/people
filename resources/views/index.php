@@ -39,20 +39,14 @@
 						<ul class="nav navbar-nav">
 							<!--Possible nav buttons here-->
 						</ul>
-
-						<form class="navbar-form navbar-left" role="search"> 
-							<div class="form-group">
-								<input ng-model="testCtrl.desk_id" ng-model-options="{debounce: {default: 500}}" placeholder="Desk ID" class="form-control"/>
-							</div>							
-						</form>
-
+						
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
 			</nav>
 
 
 			<!--The Map-->
-			<the-map ng-src="assets/svg/Office.svg" selected-desk="testCtrl.desk_id"></the-map>		
+			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>		
 
 			<div ng-show="uiCtrl.desk" class="UserCtrl" ng-controller="UserInfoCtrl as uiCtrl">
 				<div class="user-info">
@@ -99,9 +93,19 @@
 			</div>
 
 									
-			<search ng-if="mainCtrl.isReady() || true" map="mainCtrl.map"></search> 
+			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search> 
 			
-			
+			<div ng-if="mainCtrl.isReady()" class="bottom-info">
+								
+				<strong class="deskless">
+					? people without seats 
+				</strong>
+				
+				<strong class="free-desks">
+					{{mainCtrl.freeDesksCount()}} free seats
+				</strong>
+				
+			</div>
 		</div>
 
 		<script type="text/javascript">

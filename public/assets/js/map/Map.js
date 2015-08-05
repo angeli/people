@@ -244,7 +244,7 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 		else
 		{
 			throw new Error("Invalid desk! Unable to select!");
-		}	
+		}
 	}
 	
 	Map.prototype.getSelectedDesk = function()
@@ -256,6 +256,29 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 	{
 		this.$container.on.apply(this.$container, arguments);
 	}
+	
+	/**
+	 * Returns only the free, completely unoccupied desks
+	 * 
+	 * @returns {Array}
+	 */
+	Map.prototype.getFreeDesks = function()
+	{
+		var out = [];
+		
+		for(var i in this.desks)
+		{
+			var desk = this.desks[i];
+			
+			if(desk.isFree())
+			{
+				out.push(desk);
+			}
+		}
+		
+		return out;
+	}
+
 	
 	/**
 	 * Get / Set the map zoom level
@@ -274,8 +297,6 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 			if(zoom < this.min_zoom)
 				zoom = this.min_zoom;
 			
-			console.log("Zoom", zoom);
-
 			var width	= this.root().attr("width");
 			var height	= this.root().attr("height"); 
 
@@ -287,10 +308,6 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 
 			this.$container.find('svg').css(scale);
 			
-			console.log("Scale", scale);
-
-
-
 			this.zoom_val = zoom;
 			
 			this.$container.trigger("map.zoomed", [this, 1]);
