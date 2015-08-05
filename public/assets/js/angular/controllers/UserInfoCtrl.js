@@ -161,7 +161,7 @@ console.log(self.user_id, self.desk);
 		}
 
 		free_desks = free_desks.filter(function(n){return n != undefined});
-		
+
 		return free_desks;
 	};
 

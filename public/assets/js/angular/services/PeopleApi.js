@@ -134,7 +134,22 @@ console.log(options);
 				}
 			}
 		}
+		standing_people.sort(function(a, b){
+			if(a.u_name > b.u_name)
+			{
+				return 1;
+			}
 
+			if(a.u_name < b.u_name)
+			{
+				return -1;
+			}
+
+			if(a.u_name == b.u_name)
+			{
+				return 0;
+			}
+		});
 		return standing_people;
 	};
 
