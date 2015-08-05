@@ -30,7 +30,7 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 		{
 			$scope.$broadcast("update_users");
 			
-		}, 10000);
+		}, 30000);
 		
 	}
 	
@@ -58,7 +58,7 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			for(var i in users)
 			{
 				var user = users[i];
-				hash[user.id] = true;				
+				hash[user.desk] = true;				
 			}
 			
 			var desks = self.map.desks;

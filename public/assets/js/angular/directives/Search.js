@@ -66,31 +66,7 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 		});	
 		
 	}
-	
-	/**
-	 * Fill the users with bogus data for testing purposes
-	 * 
-	 * @param {type} $scope
-	 * @returns {undefined}
-	 */
-	Search.prototype.createBogusData = function($scope)
-	{
-		for(var i = 0; i < 400; i++)
-		{
-			if(i >= 138 && i <= 145 || i == 157 )
-				continue;
-
-			$scope.users.push(
-			{
-				id			: i,
-				u_name		: "Some User Name " + i,
-				name		: "Some bogus name " + i,
-				department	: "Department " + i,
-				position	: "Some Position " + i,
-			});
-		}
-	}
-	
+			
 	/**
 	 * 
 	 * @param {Scope} $scope
@@ -113,8 +89,8 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 				if((data[i][key] + '').match(term))
 				{
 					user = {
-						id		: data[i].id,
-						text	: data[i].u_name, 
+						id		: data[i].desk,
+						text	: data[i].u_name + " (" + data[i].desk + ")", 
 					}					
 					break;
 				}
@@ -138,7 +114,7 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			if(user)
 			{
 				out.push(user);
-				hash[user.id] = true;
+				hash[user.desk] = true;
 			}
 		}
 		
