@@ -81,6 +81,7 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		var def			= this.q.defer();
 		var uri			= '/api/user/' + user;
 console.log(options);
+
 		setTimeout(function() {
 			self.http.put(uri, options)
 			.success(function(result)
@@ -97,7 +98,7 @@ console.log(options);
 		}, 1000);
 
 		return def.promise;
-	}
+	};
 
 	PeopleApi.prototype.isAdminUser = function()
 	{
@@ -115,7 +116,27 @@ console.log(options);
 		}
 
 		return false;
-	}
+	};
+
+	PeopleApi.prototype.getStandingPeople = function()
+	{
+		var standing_people = [];
+
+		if(typeof this.people === 'object')
+		{
+			for(i in this.people)
+			{
+				var person = this.people[i];
+
+				if( person.desk === null)
+				{
+					standing_people.push({u_id: person.u_id, u_name: person.u_name, job: person.job});
+				}
+			}
+		}
+
+		return standing_people;
+	};
 
 	return PeopleApi;
 });

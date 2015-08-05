@@ -4,15 +4,16 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	var UserInfoCtrl = function($scope, PeopleApi)
 	{
 		console.log($scope);
-		this.apiService		= PeopleApi;
-		var self			= this;
-		this.edit			= false;
-		this.is_locked		= true
-		this.scope			= $scope;
-		this.desk			= false;
-		this.empty			= false;
+		this.apiService			= PeopleApi;
+		var self				= this;
+		this.edit				= false;
+		this.is_locked			= true
+		this.scope				= $scope;
+		this.desk				= false;
+		this.empty				= false;
+		this.destination_desk	= 0;
 
-		this.free_desks		= [157, 142, 140];
+		//this.free_desks		= [157, 142, 140];
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
@@ -20,6 +21,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			var desk			= args[1];
 			var desk_id			= desk.id();
 			self.selected_desk	= desk;
+			self.free_desks		= self.getFreeDesks(map.getFreeDesks());
 
 			self.openDesk(desk_id);
 
@@ -79,32 +81,35 @@ console.log(person);
 			this.team		= person.location;
 			this.mail		= person['e-mail'];
 			this.desk		= desk;
+			this.empty		= false;
 			this.setNames();
 		}
 		else
 		{
-			this.name		= '';
-			this.user_id	= '';
-			this.position	= '';
-			this.department	= '';
-			this.team		= '';
-			this.mail		= '';
-			this.desk		= '';
-			this.fname		= '';
-			this.lname		= '';
-			this.empty = true;
+			this.name				= '';
+			this.user_id			= '';
+			this.position			= '';
+			this.department			= '';
+			this.team				= '';
+			this.mail				= '';
+			this.desk				= 0;
+			this.fname				= '';
+			this.lname				= '';
+			this.empty				= true;
+			this.destination_desk	= desk;
+			this.standing_people	= this.getStandingPeople();
 		}
 
-		console.log(this.desk);
+		console.log(this.empty);
 	};
 
 
 	UserInfoCtrl.prototype.checkAdmin = function()
 	{
 		this.admin = this.apiService.isAdminUser();
-	}
+	};
 
-	UserInfoCtrl.prototype.chengeDesk = function()
+	UserInfoCtrl.prototype.changeDesk = function()
 	{
 		var self = this;
 
@@ -113,6 +118,8 @@ console.log(person);
 			{
 				console.log('success', data);
 				self.selected_desk.isFree(true);
+				self.empty = false;
+				self.openDesk(self.destination_desk);
 			},
 			function(fail)
 			{
@@ -121,6 +128,7 @@ console.log(person);
 		);
 	};
 
+//deprecate it - use changeDesk
 	UserInfoCtrl.prototype.leaveDesk = function()
 	{
 		var self = this;
@@ -137,8 +145,29 @@ console.log(self.user_id, self.desk);
 				console.log('fail', fail);
 			}
 		);
+	};
 
+	UserInfoCtrl.prototype.getFreeDesks = function(desks)
+	{
+		var free_desks = [];
 
+		for(i in desks)
+		{
+			var desk = desks[i];
+
+			var desk_id	= desk.id();
+
+			free_desks[desk_id] = desk_id;
+		}
+
+		free_desks = free_desks.filter(function(n){return n != undefined});
+		
+		return free_desks;
+	};
+
+	UserInfoCtrl.prototype.getStandingPeople = function()
+	{
+		return this.apiService.getStandingPeople();
 	};
 
 	return UserInfoCtrl;

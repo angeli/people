@@ -44,12 +44,11 @@
 				</div><!-- /.container-fluid -->
 			</nav>
 
-
 			<!--The Map-->
 			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>
 
-			<div ng-show="uiCtrl.desk" class="UserCtrl" ng-controller="UserInfoCtrl as uiCtrl">
-				<div class="user-info">
+			<div ng-controller="UserInfoCtrl as uiCtrl">
+				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0" class="UserCtrl">
 					<div class="row">
 						<div class="col-md-4"><img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" /></div>
 
@@ -82,10 +81,9 @@
 									<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
 								</select>
 							</div>
-
 						</div>
 
-						<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.chengeDesk()"><i class="fa fa-pencil"></i></div>
+						<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.changeDesk()"><i class="fa fa-pencil"></i></div>
 							<div class="col-md-1"></div>
 						<div class="edit-leave col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveDesk()"><i class="fa fa-close"></i></div>
 					</div>
@@ -93,15 +91,27 @@
 					<div class="row user-mail">
 						<div><a href="mailto:{{uiCtrl.mail}}">{{uiCtrl.mail}}</a></div>
 					</div>
+					{{uiCtrl.empty}}
 				</div>
 
-				<div class="free-desks-select" ng-if="uiCtrl.edit">
+				<div class="free-desks-select" ng-if="uiCtrl.edit && uiCtrl.desk !== false && uiCtrl.desk > 0">
 					Available desks:
 					<div ng-repeat="free_desk in uiCtrl.free_desks">
-						<div ng-model="uiCtrl.destination_desk" ng-click="uiCtrl.destination_desk = free_desk; uiCtrl.chengeDesk()">{{free_desk}}</div>
+						<div ng-model="uiCtrl.destination_desk" ng-click="uiCtrl.destination_desk = free_desk; uiCtrl.changeDesk()" class="free_desk">{{free_desk}}</div>
+					</div>
+				</div>
+
+				<div class="UserCtrl standing-people" ng-if="uiCtrl.empty">
+					<div ng-repeat="person in uiCtrl.standing_people"
+						 ng-click="uiCtrl.user_id = person.u_id; uiCtrl.changeDesk()"
+						 class="standing-person"
+					>
+							{{person.u_name}} / {{person.job}}
 					</div>
 				</div>
 			</div>
+
+
 
 
 			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
