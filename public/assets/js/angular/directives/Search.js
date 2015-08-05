@@ -83,14 +83,19 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 		{
 			var user = null;
 			
+			// Skip deskless
+			if((data[i].desk|0) == 0)
+				continue;
+			
 			// Search by pretty much anything
 			for(var key in data[i])
 			{
 				if((data[i][key] + '').match(term))
 				{
-					user = {
+					user = 
+					{
 						id		: data[i].desk,
-						text	: data[i].u_name + " (" + data[i].desk + ")", 
+						text	: data[i].u_name + " (" + (data[i].desk|| "deskless") + ")", 
 					}					
 					break;
 				}
@@ -114,7 +119,7 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			if(user)
 			{
 				out.push(user);
-				hash[user.desk] = true;
+				hash[user.id] = true;
 			}
 		}
 		

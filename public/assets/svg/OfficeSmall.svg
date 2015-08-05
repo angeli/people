@@ -59,9 +59,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2452792"
-     inkscape:cx="1806.4121"
-     inkscape:cy="327.23888"
+     inkscape:zoom="0.44027268"
+     inkscape:cx="1413.7288"
+     inkscape:cy="703.25779"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -93,7 +93,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Draft"
-     style="display:inline;opacity:0.1"
+     style="display:none;opacity:0.1"
      transform="translate(877.42859,480.54837)"
      sodipodi:insensitive="true">
     <image
@@ -3257,8 +3257,6 @@
            style="" />
       </g>
     </g>
-    
-   
     <g
        transform="translate(752.17595,582.14167)"
        onclick=""
@@ -3371,8 +3369,6 @@
            style="" />
       </g>
     </g>
-    
-   
     <g
        class="Desk"
        id="g6609"
@@ -3485,8 +3481,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        class="Desk"
        id="g6665"
@@ -3599,7 +3593,6 @@
            style="" />
       </g>
     </g>
-       
     <g
        transform="translate(861.0716,646.11604)"
        onclick=""
@@ -3712,8 +3705,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        transform="translate(971.7068,582.14167)"
        onclick=""
@@ -3826,7 +3817,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g6833"
@@ -3939,8 +3929,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        class="Desk"
        id="g6889"
@@ -4053,8 +4041,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        transform="translate(1084.7774,646.11604)"
        onclick=""
@@ -4167,8 +4153,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        class="Desk"
        id="g7001"
@@ -4281,8 +4265,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        transform="translate(1195.9763,646.11604)"
        onclick=""
@@ -4395,7 +4377,6 @@
            style="" />
       </g>
     </g>
-	
     <g
        transform="translate(1304.872,582.14167)"
        onclick=""
@@ -4508,8 +4489,6 @@
            style="" />
       </g>
     </g>
-   
-   
     <g
        class="Desk"
        id="g7169"
@@ -4622,7 +4601,6 @@
            style="" />
       </g>
     </g>
-      
     <g
        class="Desk"
        id="g7225"
@@ -4735,7 +4713,6 @@
            style="" />
       </g>
     </g>
-     
     <g
        transform="translate(1415.5072,646.11604)"
        onclick=""
@@ -4848,7 +4825,6 @@
            style="" />
       </g>
     </g>
-      
     <g
        class="Desk"
        id="g7337"
@@ -4961,7 +4937,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="translate(1526.2802,646.11604)"
        onclick=""
@@ -5074,7 +5049,6 @@
            style="" />
       </g>
     </g>
-        
     <g
        transform="translate(1636.9154,582.14167)"
        onclick=""
@@ -5187,7 +5161,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g7505"
@@ -9668,8 +9641,6 @@
            style="" />
       </g>
     </g>
-    
-   
     <g
        class="Desk"
        id="g11863"
@@ -10006,8 +9977,6 @@
            style="" />
       </g>
     </g>
-    
-   
     <g
        class="Desk"
        id="g12059"
@@ -10456,7 +10425,6 @@
            style="" />
       </g>
     </g>
-     
     <g
        transform="matrix(-1,0,0,1,1231.1829,560.22136)"
        onclick=""
@@ -10681,7 +10649,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        class="Desk"
        id="g12675"
@@ -10794,7 +10761,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g12731"
@@ -11243,7 +11209,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1747.0173,670.53002)"
        onclick=""
@@ -11356,7 +11321,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1706.3586,670.53002)"
        onclick=""
@@ -11693,7 +11657,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        transform="matrix(-1,0,0,1,1747.0173,779.42446)"
        onclick=""
@@ -11750,7 +11713,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1747.0173,819.376)"
        onclick=""
@@ -12143,7 +12105,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        class="Desk"
        id="g14019"
@@ -12256,7 +12217,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g14159"
@@ -12705,7 +12665,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1747.0173,1001.456)"
        onclick=""
@@ -12762,7 +12721,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1706.3586,1001.456)"
        onclick=""
@@ -14275,7 +14233,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1336.1883,892.56155)"
        onclick=""
@@ -14612,7 +14569,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g15027"
@@ -14669,7 +14625,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,1295.8832,892.56155)"
        onclick=""
@@ -15174,7 +15129,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        class="Desk"
        id="g15475"
@@ -15287,8 +15241,7 @@
            style="" />
       </g>
     </g>
-    
-	<g
+    <g
        transform="matrix(-1,0,0,1,-869.65645,559.964)"
        onclick=""
        inkscape:label="#Desk1"
@@ -15624,7 +15577,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        transform="matrix(-1,0,0,1,-974.66186,599.91555)"
        onclick=""
@@ -15793,7 +15745,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        transform="matrix(-1,0,0,1,-820.09835,671.464)"
        onclick=""
@@ -16018,7 +15969,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,-976.01536,671.464)"
        onclick=""
@@ -16243,7 +16193,6 @@
            style="" />
       </g>
     </g>
-  
     <g
        class="Desk"
        id="g16931"
@@ -16468,7 +16417,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        class="Desk"
        id="g17099"
@@ -16693,7 +16641,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g17267"
@@ -17030,7 +16977,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g17435"
@@ -17927,7 +17873,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g18023"
@@ -18152,7 +18097,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,-1339.8825,559.964)"
        onclick=""
@@ -18377,7 +18321,6 @@
            style="" />
       </g>
     </g>
-  
     <g
        transform="matrix(-1,0,0,1,-1238.059,670.27266)"
        onclick=""
@@ -18490,7 +18433,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g18527"
@@ -18771,7 +18713,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g18709"
@@ -18884,7 +18825,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,-1343.418,781.99553)"
        onclick=""
@@ -19165,7 +19105,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        transform="matrix(-1,0,0,1,-1234.5235,891.59707)"
        onclick=""
@@ -19502,7 +19441,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g19171"
@@ -19559,7 +19497,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g19213"
@@ -19728,7 +19665,6 @@
            style="" />
       </g>
     </g>
-    
     <g
        class="Desk"
        id="g19367"
@@ -19897,7 +19833,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        transform="matrix(-1,0,0,1,-1339.529,1000.4915)"
        onclick=""
@@ -20010,7 +19945,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g19577"
@@ -20235,7 +20169,6 @@
            style="" />
       </g>
     </g>
-   
     <g
        class="Desk"
        id="g19801"
