@@ -48,7 +48,7 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			{
 				self.PeopleApi.getAllDesks().then(function(users)
 				{
-					var result = self.searchByAny(users, query.term);
+					var result = self.searchByAny($scope, users, query.term);
 					query.callback({results: result} );
 				});		
 			},
@@ -97,7 +97,7 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 	 * @param {String} term
 	 * @returns {Array}
 	 */
-	Search.prototype.searchByAny = function(data, term)
+	Search.prototype.searchByAny = function($scope, data, term)
 	{
 		var out = [];
 		
@@ -121,14 +121,16 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			}
 			
 			// Check if search terms corresponds to an empty desk
-			if(!user && term|0 > 0 && $scope.map.getDesk(term|0) !== null)
+			var desk = $scope.map.getDesk(term|0);
+			
+			if(!user && term|0 > 0 && desk !== null)
 			{
-				if(hash[term])
+				if(hash[term] || !desk.isFree())
 					continue;
 				
 				user = {
 					id		: term|0,
-					text	: "Empty Desk (" + term + ")"
+					text	: "Free Desk (" + term + ")"
 				}
 			}
 			
