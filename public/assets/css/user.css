@@ -7,7 +7,7 @@
 	background: white;
     box-shadow: 0 0 5px 2px #888888;
     border-radius: 5px;
-    height: 205px;
+    height: 200px;
 	left: 20px;
 	bottom: 150px;
     position: absolute;
@@ -30,7 +30,7 @@
 	background: white;
     box-shadow: 0 0 5px 2px #888888;
     border-radius: 5px;
-    height: 205px;
+    height: 200px;
 	left: 355px;
 	bottom: 150px;
     position: absolute;
@@ -57,7 +57,7 @@
 
 .user-name {
 	font-weight: bolder;
-	font-size: 35px;
+	font-size: 33px;
 }
 
 .user-office-info {
@@ -121,7 +121,7 @@ div.user-position, div.user-name {
 	background: white;
     box-shadow: 0 0 5px 2px #888888;
     border-radius: 5px;
-    height: 205px;
+    height: 200px;
 	left: 20px;
 	bottom: 150px;
     position: absolute;
