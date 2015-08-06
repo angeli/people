@@ -13,7 +13,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		{
 			map				: '=',
 			selectedDesk	: '=',
-		}
+		}		
 	}
 	
 	Search.prototype = new AbstractDir;
@@ -79,7 +79,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 					query.callback({results: result } );
 				});
 				
-			}, 500),
+			}, 300),
 		}
 		
 		
@@ -179,13 +179,15 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 			}
 			
 			// Check if search term corresponds to an empty desk
-			var desk = $scope.map.getDesk(term|0);
-			
-			if(!user && term|0 > 0 && desk !== null)
+			if(!user && term|0 > 0 && !hash[term])
 			{
-				if(hash[term] || !desk.isFree())
+				var desk = $scope.map.getDesk(term|0);
+								
+				if(!desk.isFree())
+				{
+					hash[term] = true;
 					continue;
-				
+				}
 				// Create empty desk searh choice
 				user = {
 					id		: term,
