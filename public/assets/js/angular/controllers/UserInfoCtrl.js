@@ -16,6 +16,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.destination_desk	= 0;
 		this.getCurrentUser();
 
+		//desk selection event
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
 			var map				= args[0];
@@ -31,7 +32,6 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			console.log("User Info Desk Selected: " + desk.id(), map, desk);
 		});
 
-
 		$scope.$parent.$on("map.ready", function($e, args)
 		{
 			var map		= args[0];
@@ -40,6 +40,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			console.log("Da map is loaded", map);
 		});
 
+		//change desk event
 		$scope.$parent.$on("change_desk", function(e, args)
 		{
 			var user_id = args[0];
@@ -54,6 +55,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			console.log("Change Desk", user_id, desk_id);
 		});
 
+		//clear map
 		$scope.$parent.$on("map.desk-unselected", function($e, args)
 		{
 			self.name				= '';
@@ -68,42 +70,15 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			self.empty				= true;
 			self.destination_desk	= 0;
 		});
-		
-		$scope.$parent.$on("change_desk", function(e, args)
-		{
-			var user_id = args[0];
-			var desk_id = args[1];
-			
-			console.log("Change Desk", user_id, desk_id);
-		});
-		
-		$scope.$parent.$on("change_desk", function(e, args)
-		{
-			var user_id = args[0];
-			var desk_id = args[1];
-			
-			console.log("Change Desk", user_id, desk_id);
-		});
-		
-		$scope.$parent.$on("change_desk", function(e, args)
-		{
-			var user_id = args[0];
-			var desk_id = args[1];
-			
-			console.log("Change Desk", user_id, desk_id);
-		});
-		
-		$scope.$parent.$on("change_desk", function(e, args)
-		{
-			var user_id = args[0];
-			var desk_id = args[1];
-			
-			console.log("Change Desk", user_id, desk_id);
-		});
 	};
 
 	UserInfoCtrl.prototype = new AbstractCtrl;
 
+	/**
+	 * Set current user and admin rights
+	 *
+	 * @returns {undefined}
+	 */
 	UserInfoCtrl.prototype.getCurrentUser = function()
 	{
 		var self = this;
@@ -129,6 +104,11 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		);
 	};
 
+	/**
+	 * Split name on first and Last
+	 *
+	 * @returns {undefined}
+	 */
 	UserInfoCtrl.prototype.setNames = function()
 	{
 		var name = this.name.split(" ");
@@ -137,7 +117,12 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.lname	= name[1];
 	};
 
-	UserInfoCtrl.prototype.releseLock = function()
+	/**
+	 * Changes edit lock
+	 *
+	 * @returns {undefined}
+	 */
+	UserInfoCtrl.prototype.changeLock = function()
 	{
 		if(this.admin == true)
 		{
@@ -154,6 +139,12 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		}
 	};
 
+	/**
+	 * Loads selected desk and user info
+	 *
+	 * @param int desk
+	 * @returns {undefined}
+	 */
 	UserInfoCtrl.prototype.openDesk = function(desk)
 	{
 		console.log(desk);
@@ -188,10 +179,13 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			this.empty				= true;
 			this.destination_desk	= desk;
 		}
-
-		console.log(this.empty);
 	};
 
+	/**
+	 * Changes user desk
+	 *
+	 * @returns {undefined}
+	 */
 	UserInfoCtrl.prototype.changeDesk = function()
 	{
 		var self	= this;
@@ -235,11 +229,16 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			},
 			function(fail)
 			{
-				console.log('fail', fail);
+				console.log('Desk Change FAILED!', fail);
 			}
 		);
 	};
 
+	/**
+	 * Removes user from the desk
+	 *
+	 * @returns {undefined}
+	 */
 	UserInfoCtrl.prototype.leaveDesk = function()
 	{
 		var self	= this;
@@ -261,6 +260,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 							self.openDesk(self.desk);
 						}
 
+						self.map.clearSelection();
 						self.desk = '';
 						self.scope.$evalAsync();
 						self.loader = false;
@@ -269,11 +269,17 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			},
 			function(fail)
 			{
-				console.log('fail', fail);
+				console.log('Removing user from desk FAILED!', fail);
 			}
 		);
 	};
 
+	/**
+	 * Returns the free desks
+	 *
+	 * @param {type} desks
+	 * @returns {_L2.AbstractCtrl.getFreeDesks.free_desks|Array}
+	 */
 	UserInfoCtrl.prototype.getFreeDesks = function(desks)
 	{
 		var free_desks = [];

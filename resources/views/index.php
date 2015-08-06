@@ -43,17 +43,17 @@
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
 			</nav>
-			
-			
+
+
 			<!--The Map-->
 			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>
 
 			<div class="instruction" ng-if="mainCtrl.map.getSelectedDesk().isFree()" ng-cloak>
 				<h1>Select user for desk {{mainCtrl.map.getSelectedDesk().id()}}</h1>
 			</div>
-			
+
 			<div ng-controller="UserInfoCtrl as uiCtrl">
-				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0 && !uiCtrl.loader" class="UserCtrl">
+				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0 && !uiCtrl.loader" class="UserCtrl" ng-cloak>
 					<div class="row">
 						<div class="col-md-4"><img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" /></div>
 
@@ -65,7 +65,7 @@
 							<div class="user-position">{{uiCtrl.position}}</div>
 						</div>
 						<div class="col-md-1">
-							<div class="lock" ng-if="uiCtrl.admin" ng-click="uiCtrl.releseLock()"><i class="{{uiCtrl.is_locked? 'fa fa-lock': 'fa fa-unlock'}}"></i></div>
+							<div class="lock" ng-if="uiCtrl.admin" ng-click="uiCtrl.changeLock()"><i class="{{uiCtrl.is_locked? 'fa fa-lock': 'fa fa-unlock'}}"></i></div>
 						</div>
 					</div>
 
@@ -98,9 +98,9 @@
 					</div>
 
 				</div>
-				<div ng-if="uiCtrl.loader" class="loader"><img src="/assets/images/hex-loader2.gif" alt="" class="loader-image"/></div>
+				<div ng-if="uiCtrl.loader" class="loader" ng-cloak><img src="/assets/images/hex-loader2.gif" alt="" class="loader-image"/></div>
 
-				<div class="free-desks-select" ng-if="uiCtrl.edit && uiCtrl.desk !== false && uiCtrl.desk > 0 && uiCtrl.free_desks.length > 0 && !uiCtrl.loader">
+				<div class="free-desks-select" ng-if="uiCtrl.edit && uiCtrl.desk !== false && uiCtrl.desk > 0 && uiCtrl.free_desks.length > 0 && !uiCtrl.loader" ng-cloak>
 					Available desks:
 					<div ng-repeat="free_desk in uiCtrl.free_desks">
 						<div ng-model="uiCtrl.destination_desk" ng-click="uiCtrl.destination_desk = free_desk; uiCtrl.changeDesk()" class="free_desk">{{free_desk}}</div>
