@@ -2,14 +2,20 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 {
 	var PeopleApi = function($http, $q)
 	{
-		this.http			= $http;
-		this.q				= $q;
+		this.http	= $http;
+		this.q		= $q;
 
 		this.getAllDesks(false);
 	};
 
 	PeopleApi.prototype = new AbstractService;
 
+	/**
+	 * Gets all desks and users info
+	 *
+	 * @param {type} forced
+	 * @returns {_L1.PeopleApi.prototype.getAllDesks.q@call;defer.promise}
+	 */
 	PeopleApi.prototype.getAllDesks = function(forced)
 	{
 		var self	= this;
@@ -21,13 +27,13 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 			self.http.get('/api/user', options)
 			.success(function(result)
 			{
-				console.log("Success", result);
+				console.log("Get Desks Success", result);
 				self.people = result;
 				def.resolve(result);
 			})
 			.error(function(result)
 			{
-				console.log("Failed!", result);
+				console.log("Get Desks Failed!", result);
 				def.reject(result);
 			});
 		}
@@ -40,6 +46,12 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 
 	};
 
+	/**
+	 * Loads info for selected desk
+	 *
+	 * @param {type} desk
+	 * @returns {Boolean|_L1.AbstractService.getDesk.person|_L1.PeopleApi.prototype.getDesk@arr;people}
+	 */
 	PeopleApi.prototype.getDesk = function(desk)
 	{
 		if(typeof this.people === 'object')
@@ -58,6 +70,14 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		return false;
 	};
 
+	/**
+	 * Make call for desk changes
+	 *
+	 * @param {type} user
+	 * @param {type} from
+	 * @param {type} to
+	 * @returns {_L1.PeopleApi.prototype.changeDesk.q@call;defer.promise}
+	 */
 	PeopleApi.prototype.changeDesk = function(user, from, to)
 	{
 		var self		= this;
@@ -71,13 +91,13 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 			self.http.put(uri, options)
 			.success(function(result)
 			{
-				console.log("Success", result);
+				console.log("Change Desk Success", result);
 				def.resolve(result);
 			})
 			.error(function(result)
 			{
 				self.getAllDesks(true);
-				console.log("Failed!", result);
+				console.log("Change Desk Failed!", result);
 				def.reject(result);
 			});
 
