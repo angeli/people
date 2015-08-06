@@ -48,18 +48,18 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		});
 	}
 	
-	Search.prototype.controller = function($scope, PeopleApi)
+	Search.prototype.controller = function($scope, PeopleApi, Debounce)
 	{
 		var self = this;	
 		
 		this.PeopleApi = PeopleApi;
-		
+				
 		$scope.select2_settings = 
 		{
 			multiple				: true,
 			maximumSelectionSize	: 1, 
 						
-			query : function(query)
+			query : Debounce.make(function(query)
 			{
 				var map		= $scope.map;
 				var desk	= map.getSelectedDesk();
@@ -68,8 +68,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 								
 				if(desk instanceof Desk && desk.isFree())
 				{
-					search_empty = true;
-					
+					search_empty = true;					
 				}
 				
 				
@@ -78,8 +77,9 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 				{
 					var result = self.searchByAny($scope, users, query.term, search_empty);
 					query.callback({results: result } );
-				});		
-			},
+				});
+				
+			}, 500),
 		}
 		
 		
@@ -111,6 +111,21 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		var out = [];		
 		var hash = {};
 		
+		// Default search keys
+		var search_by	= ["u_name", "e-mail", "desk"];
+		
+		// Search by specified key
+		var matches		= String(term).match(/^([a-z_-]+):(.+)/i);
+		
+		if(matches)
+		{
+			var key = matches[1].trim();
+			term	= matches[2];
+			
+			search_by = [key];
+		}
+		
+		
 		var count = 0;
 		
 		for(var i in data)
@@ -125,29 +140,45 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 			if(search_empty && data[i].desk|0 > 0)
 				continue;
 			
-			// Search by pretty much anything
-			for(var key in data[i])
+			// Search by all specified search keys
+			for(var n in search_by)
 			{
-				if((data[i][key] + '').match(term))
+				var key = search_by[n];
+				
+				try
 				{
-					var id = data[i].desk;
-					
-					if(search_empty)
+					// Try to match key to search term
+					if((data[i][key] + '').match(new RegExp(term, "i")))
 					{
-						id = "user_" + data[i].u_id;
+						var id = data[i].desk;
+
+						// If searching for deskless users, set selection id to a prefixed u_id , 
+						// so we can later distinguish between desk and user id
+						if(search_empty)
+						{
+							id = "user_" + data[i].u_id;
+						}
+						
+						// Create selection choice
+						user = 
+						{
+							id		: id,
+							text	: data[i].u_name + " (" + (data[i].desk|| "deskless") + ")", 
+							data	: {test: 1}
+						}		
+						
+						// Break loop on any successfull match
+						break;
 					}
-					
-					user = 
-					{
-						id		: id,
-						text	: data[i].u_name + " (" + (data[i].desk|| "deskless") + ")", 
-						data	: {test: 1}
-					}					
-					break;
+				}
+				catch(e)
+				{
+					// Exit on invalid expression
+					return [];
 				}
 			}
 			
-			// Check if search terms corresponds to an empty desk
+			// Check if search term corresponds to an empty desk
 			var desk = $scope.map.getDesk(term|0);
 			
 			if(!user && term|0 > 0 && desk !== null)
@@ -155,8 +186,9 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 				if(hash[term] || !desk.isFree())
 					continue;
 				
+				// Create empty desk searh choice
 				user = {
-					id		: term|0,
+					id		: term,
 					text	: "Free Desk (" + term + ")"
 				}
 			}

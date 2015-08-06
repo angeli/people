@@ -53,8 +53,7 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 		$("body").on("keydown", function(e)
 		{
 			e = e || event;
-			console.log(e.keyCode, String.fromCharCode(e.keyCode), e);
-			
+						
 			// Reset map zoom
 			if(e.ctrlKey && e.keyCode == 96)
 			{

@@ -22,6 +22,7 @@ define('ngApp/PeopleApp', ['ngApp/Abstract'], function(AbstractApp)
 		this.services =
 		[
 			'ngService/PeopleApi',
+			'ngService/Debounce',
 		];
 	}
 
