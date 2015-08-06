@@ -100,9 +100,44 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 	 */
 	Map.prototype.initMap = function()
 	{
+		var self = this;
+		
 		this.initTemplates();
 		this.unlinkClones();
 		this.setupDesks();
+		
+		var timeout = null;
+		var origin	= null;
+		
+		// Unselect desk on container click
+		this.$container.click(function(){
+			timeout = setTimeout(function(){
+				try
+				{
+					self.selectDesk(null);
+					origin = 
+					{
+						x : e.clientX,
+						y : e.clientY,
+					}
+				}
+				catch(e){}
+			}, 300);
+		});
+		
+//		// Stop unselect on move
+//		this.$container.on("mousemove", function(e)
+//		{
+//			if(timeout !== null)
+//			{
+//				if(origin && (Math.abs(origin.x + e.clientX) > 20 || Math.abs(origin.y + e.clientY) > 20))
+//				{
+//					clearTimeout(timeout);
+//					timeout = null;
+//					console.log("Clear");
+//				}
+//			}
+//		});
 		
 //		console.log("Initing map...", this.desks.join());
 	}
@@ -164,7 +199,7 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 		// Setup desks 
 		this.desks = [];
 		var self	= this;
-
+		
 		this.root().find('.Desk').each(function(i, desk)
 		{
 			var desk = new Desk(desk);
@@ -186,7 +221,8 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 		// Select desk on click
 		desk.on('click', function(e)
 		{
-			map.selectDesk(desk);
+			e.stopPropagation();
+			map.selectDesk(desk);			
 		});
 		
 		
@@ -236,7 +272,8 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 		// Unselect previous
 		if(this._selected_desk instanceof Desk)
 		{
-			this._selected_desk.isSelected(false);			
+			this._selected_desk.isSelected(false);
+			this._selected_desk = null;
 		}
 		
 		// Select desk

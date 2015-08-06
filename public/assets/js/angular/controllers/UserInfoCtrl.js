@@ -38,6 +38,14 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 			console.log("Da map is loaded", map);
 		});
+		
+		$scope.$parent.$on("change_desk", function(e, args)
+		{
+			var user_id = args[0];
+			var desk_id = args[1];
+			
+			console.log("Change Desk", user_id, desk_id);
+		});
 	};
 
 	UserInfoCtrl.prototype = new AbstractCtrl;

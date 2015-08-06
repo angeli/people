@@ -1,5 +1,5 @@
 
-define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
+define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(AbstractDir, Desk)
 {
 	"use strict";
 	
@@ -11,7 +11,8 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 		
 		this.scope			=
 		{
-			map	: '=',
+			map				: '=',
+			selectedDesk	: '=',
 		}
 	}
 	
@@ -23,7 +24,21 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 		{
 			try
 			{
-				scope.map.selectDesk(e.val);
+				var desk = scope.map.getSelectedDesk();
+				
+				if(String(e.val).match(/^user_/))
+				{
+					// Select user for desk mode
+					var user_id = String(e.val).replace("user_", "")|0;
+					var desk_id = desk.id();
+					
+					scope.$emit("change_desk", [user_id, desk_id]);
+				}
+				else
+				{
+					// Select desk by user mode
+					scope.map.selectDesk(e.val);
+				}				
 			}
 			catch(e){}
 			
@@ -43,13 +58,27 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 		{
 			multiple				: true,
 			maximumSelectionSize	: 1, 
+			placeholder				: "Select person for desk",
 			
 			query : function(query)
 			{
+				var map		= $scope.map;
+				var desk	= map.getSelectedDesk();
+				
+				var search_empty = false;
+								
+				if(desk instanceof Desk && desk.isFree())
+				{
+					search_empty = true;
+					
+				}
+				
+				
+				
 				self.PeopleApi.getAllDesks().then(function(users)
 				{
-					var result = self.searchByAny($scope, users, query.term);
-					query.callback({results: result} );
+					var result = self.searchByAny($scope, users, query.term, search_empty);
+					query.callback({results: result , more: true } );
 				});		
 			},
 		}
@@ -65,6 +94,12 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			$scope.$evalAsync();			
 		});	
 		
+		$scope.map.on("map.desk-selected", function(e, map, desk)
+		{
+			$scope.select2_open = (desk && desk.isFree());
+//			$scope.$evalAsync();
+		});
+		
 	}
 			
 	/**
@@ -73,18 +108,23 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 	 * @param {String} term
 	 * @returns {Array}
 	 */
-	Search.prototype.searchByAny = function($scope, data, term)
+	Search.prototype.searchByAny = function($scope, data, term, search_empty)
 	{
-		var out = [];
-		
+		var out = [];		
 		var hash = {};
+		
+		var count = 0;
 		
 		for(var i in data)
 		{
 			var user = null;
 			
 			// Skip deskless
-			if((data[i].desk|0) == 0)
+			if(!search_empty && (data[i].desk|0) == 0)
+				continue;
+			
+			// Skip desked
+			if(search_empty && data[i].desk|0 > 0)
 				continue;
 			
 			// Search by pretty much anything
@@ -92,10 +132,18 @@ define('ngDirective/Search', ['ngDirective/Abstract'], function(AbstractDir)
 			{
 				if((data[i][key] + '').match(term))
 				{
+					var id = data[i].desk;
+					
+					if(search_empty)
+					{
+						id = "user_" + data[i].u_id;
+					}
+					
 					user = 
 					{
-						id		: data[i].desk,
+						id		: id,
 						text	: data[i].u_name + " (" + (data[i].desk|| "deskless") + ")", 
+						data	: {test: 1}
 					}					
 					break;
 				}

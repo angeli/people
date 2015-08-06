@@ -112,8 +112,6 @@
 			</div>
 
 
-
-
 			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
 
 			<div ng-if="mainCtrl.isReady()" class="bottom-info">

@@ -5,7 +5,7 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 	
 	var PeopleCtrl = function($scope, $interval, PeopleApi, $q)
 	{
-		var self = this;
+		var self		= this;
 		this.$q			= $q;
 		this.PeopleApi	= PeopleApi;
 		
@@ -58,6 +58,7 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			for(var i in users)
 			{
 				var user = users[i];
+				
 				hash[user.desk] = true;				
 			}
 			
