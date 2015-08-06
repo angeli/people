@@ -53,7 +53,7 @@
 			</div>
 			
 			<div ng-controller="UserInfoCtrl as uiCtrl">
-				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0" class="UserCtrl">
+				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0 && !uiCtrl.loader" class="UserCtrl">
 					<div class="row">
 						<div class="col-md-4"><img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" /></div>
 
@@ -98,22 +98,16 @@
 					</div>
 
 				</div>
+				<div ng-if="uiCtrl.loader" class="loader"><img src="/assets/images/hex-loader2.gif" alt="" class="loader-image"/></div>
 
-				<div class="free-desks-select" ng-if="uiCtrl.edit && uiCtrl.desk !== false && uiCtrl.desk > 0">
+				<div class="free-desks-select" ng-if="uiCtrl.edit && uiCtrl.desk !== false && uiCtrl.desk > 0 && uiCtrl.free_desks.length > 0 && !uiCtrl.loader">
 					Available desks:
 					<div ng-repeat="free_desk in uiCtrl.free_desks">
 						<div ng-model="uiCtrl.destination_desk" ng-click="uiCtrl.destination_desk = free_desk; uiCtrl.changeDesk()" class="free_desk">{{free_desk}}</div>
 					</div>
 				</div>
 
-				<div class="UserCtrl standing-people" ng-if="uiCtrl.empty">
-					<div ng-repeat="person in uiCtrl.standing_people"
-						 ng-click="uiCtrl.user_id = person.u_id; uiCtrl.changeDesk()"
-						 class="standing-person"
-					>
-							{{person.u_name}} / {{person.job}}
-					</div>
-				</div>
+				<div class="current-user">{{uiCtrl.current_user}}</div>
 			</div>
 
 
@@ -121,14 +115,14 @@
 
 			<div ng-if="mainCtrl.isReady()" class="bottom-info">
 
-				<strong ng-if="mainCtrl.deskless_people > 0" class="deskless"> 
+				<strong ng-if="mainCtrl.deskless_people > 0" class="deskless">
 					{{mainCtrl.deskless_people}} people without seats
 				</strong>
 
 				<strong ng-if="mainCtrl.free_desks > 0" class="free-desks">
 					{{mainCtrl.free_desks}} free seats
 				</strong>
-				
+
 				<strong ng-if="mainCtrl.free_desks == 0" class="no-free-desks">
 					<i class="fa fa-warning"></i>
 					No free desks

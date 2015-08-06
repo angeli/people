@@ -12,9 +12,9 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		this.scope				= $scope;
 		this.desk				= false;
 		this.empty				= false;
+		this.loader				= false;
 		this.destination_desk	= 0;
-
-		//this.free_desks		= [157, 142, 140];
+		this.getCurrentUser();
 
 		$scope.$parent.$on("map.desk-selected", function($e, args)
 		{
@@ -34,9 +34,63 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 		$scope.$parent.$on("map.ready", function($e, args)
 		{
-			var map = args[0];
+			var map		= args[0];
+			self.map	= map;
 
 			console.log("Da map is loaded", map);
+		});
+
+		$scope.$parent.$on("change_desk", function(e, args)
+		{
+			var user_id = args[0];
+			var desk_id = args[1];
+
+			self.user_id			= user_id;
+			self.desk				= 0;
+			self.destination_desk	= desk_id;
+
+			self.changeDesk();
+
+			console.log("Change Desk", user_id, desk_id);
+		});
+
+		$scope.$parent.$on("map.desk-unselected", function($e, args)
+		{
+			self.name				= '';
+			self.user_id			= '';
+			self.position			= '';
+			self.department			= '';
+			self.team				= '';
+			self.mail				= '';
+			self.desk				= 0;
+			self.fname				= '';
+			self.lname				= '';
+			self.empty				= true;
+			self.destination_desk	= 0;
+		});
+		
+		$scope.$parent.$on("change_desk", function(e, args)
+		{
+			var user_id = args[0];
+			var desk_id = args[1];
+			
+			console.log("Change Desk", user_id, desk_id);
+		});
+		
+		$scope.$parent.$on("change_desk", function(e, args)
+		{
+			var user_id = args[0];
+			var desk_id = args[1];
+			
+			console.log("Change Desk", user_id, desk_id);
+		});
+		
+		$scope.$parent.$on("change_desk", function(e, args)
+		{
+			var user_id = args[0];
+			var desk_id = args[1];
+			
+			console.log("Change Desk", user_id, desk_id);
 		});
 		
 		$scope.$parent.$on("change_desk", function(e, args)
@@ -49,6 +103,31 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	};
 
 	UserInfoCtrl.prototype = new AbstractCtrl;
+
+	UserInfoCtrl.prototype.getCurrentUser = function()
+	{
+		var self = this;
+
+		this.apiService.getAllDesks(true).then(
+			function(people)
+			{
+				for(i in people)
+				{
+					var person = people[i];
+
+					if( ("current" in person))
+					{
+						self.current_user =  person.u_name;
+
+						if(person.edit === true)
+						{
+							self.admin = true;
+						}
+					}
+				}
+			}
+		);
+	};
 
 	UserInfoCtrl.prototype.setNames = function()
 	{
@@ -78,7 +157,7 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 	UserInfoCtrl.prototype.openDesk = function(desk)
 	{
 		console.log(desk);
-		this.checkAdmin();
+
 		this.edit		= false;
 		this.is_locked	= true
 		var person		= this.apiService.getDesk(desk);
@@ -108,21 +187,15 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			this.lname				= '';
 			this.empty				= true;
 			this.destination_desk	= desk;
-			this.standing_people	= this.getStandingPeople();
 		}
 
 		console.log(this.empty);
 	};
 
-
-	UserInfoCtrl.prototype.checkAdmin = function()
-	{
-		this.admin = this.apiService.isAdminUser();
-	};
-
 	UserInfoCtrl.prototype.changeDesk = function()
 	{
-		var self = this;
+		var self	= this;
+		this.loader	= true;
 
 		this.apiService.changeDesk(self.user_id, self.desk, self.destination_desk).then(
 			function(data)
@@ -132,10 +205,29 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 				self.apiService.getAllDesks(true).then(
 					function(people)
 					{
-						self.selected_desk.isFree(false);
+						if(self.desk != 0)
+						{
+							self.selected_desk.isFree(true);
+						}
+
 						self.empty = false;
-						self.openDesk(self.destination_desk);
+
+						var desk_to_open = self.desk;
+						if(self.destination_desk > 0)
+						{
+							desk_to_open = self.destination_desk;
+						}
+
+						self.openDesk(desk_to_open);
+
+						var new_desk = self.map.getDesk(self.destination_desk);
+
+						new_desk.isFree(false);
+
+						self.map.selectDesk(self.destination_desk);
+
 						self.scope.$evalAsync();
+						self.loader = false;
 					}
 				);
 
@@ -150,7 +242,8 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 	UserInfoCtrl.prototype.leaveDesk = function()
 	{
-		var self = this;
+		var self	= this;
+		this.loader	= true;
 
 		this.apiService.changeDesk(self.user_id, self.desk, 0).then(
 			function(data)
@@ -162,8 +255,15 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 					{
 						self.selected_desk.isFree(true);
 						self.empty = false;
+
+						if(self.desk > 0)
+						{
+							self.openDesk(self.desk);
+						}
+
 						self.desk = '';
 						self.scope.$evalAsync();
+						self.loader = false;
 					}
 				);
 			},
@@ -190,11 +290,6 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 		free_desks = free_desks.filter(function(n){return n != undefined});
 
 		return free_desks;
-	};
-
-	UserInfoCtrl.prototype.getStandingPeople = function()
-	{
-		return this.apiService.getStandingPeople();
 	};
 
 	return UserInfoCtrl;

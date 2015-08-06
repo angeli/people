@@ -14,9 +14,11 @@
     width: 330px;
 }
 
-.standing-people {
-	overflow-y: scroll;
-	padding: 20px;
+.current-user {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	font-size: 20px;
 }
 
 .standing-person:hover, .free_desk:hover {
@@ -107,4 +109,22 @@ div.user-position, div.user-name {
 .lock:hover {
 	cursor: pointer;
 	color: #000000;
+}
+
+.loader-image {
+	width: 293px;
+	height: 168px;
+	overflow: hidden;
+}
+
+.loader {
+	background: white;
+    box-shadow: 0 0 5px 2px #888888;
+    border-radius: 5px;
+    height: 205px;
+	left: 20px;
+	bottom: 150px;
+    position: absolute;
+    width: 330px;
+	padding: 20px;
 }

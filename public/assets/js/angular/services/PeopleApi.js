@@ -2,8 +2,8 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 {
 	var PeopleApi = function($http, $q)
 	{
-		this.http	= $http;
-		this.q		= $q;
+		this.http			= $http;
+		this.q				= $q;
 
 		this.getAllDesks(false);
 	};
@@ -66,9 +66,8 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 		options.to		= parseInt(to);
 		var def			= this.q.defer();
 		var uri			= '/api/user/' + user;
-console.log(options);
+		console.log(options);
 
-		setTimeout(function() {
 			self.http.put(uri, options)
 			.success(function(result)
 			{
@@ -81,62 +80,8 @@ console.log(options);
 				console.log("Failed!", result);
 				def.reject(result);
 			});
-		}, 1000);
 
 		return def.promise;
-	};
-
-	PeopleApi.prototype.isAdminUser = function()
-	{
-		if(typeof this.people === 'object')
-		{
-			for(i in this.people)
-			{
-				var person = this.people[i];
-
-				if( ("current" in person) && person.edit === true)
-				{
-					return true;
-				}
-			}
-		}
-
-		return false;
-	};
-
-	PeopleApi.prototype.getStandingPeople = function()
-	{
-		var standing_people = [];
-
-		if(typeof this.people === 'object')
-		{
-			for(i in this.people)
-			{
-				var person = this.people[i];
-
-				if( person.desk === null)
-				{
-					standing_people.push({u_id: person.u_id, u_name: person.u_name, job: person.job});
-				}
-			}
-		}
-		standing_people.sort(function(a, b){
-			if(a.u_name > b.u_name)
-			{
-				return 1;
-			}
-
-			if(a.u_name < b.u_name)
-			{
-				return -1;
-			}
-
-			if(a.u_name == b.u_name)
-			{
-				return 0;
-			}
-		});
-		return standing_people;
 	};
 
 	return PeopleApi;
