@@ -25,28 +25,16 @@ define('ngDirective/TheMap', ['ngDirective/Abstract', 'map/Map'], function(Abstr
 			// Emit Ready event when map is finished loading
 			scope.$emit('map.ready', [map]);			
 		});
-		
-		// Change selection
-		scope.$watch('selectedDesk', function(new_desk)
-		{
-			var selected = map.getSelectedDesk();
-			
-			if(!new_desk)
-				return;
-			try
-			{
-				if(!selected || selected.id() != new_desk|0)
-				{
-					map.selectDesk(new_desk);
-				}
-			}
-			catch(e) { }
-		});
-		
+				
 		// Bind selection change
 		map.on("map.desk-selected", function(e, map, desk)
 		{
 			scope.$emit("map.desk-selected", [map, desk]);			
+		});
+		
+		map.on("map.desk-unselected", function(e, map, desk)
+		{
+			scope.$emit("map.desk-unselected", [map, desk]);			
 		});
 		
 		// Bind Wheel Zoom

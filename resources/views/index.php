@@ -43,10 +43,15 @@
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
 			</nav>
-
+			
+			
 			<!--The Map-->
 			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>
 
+			<div class="instruction" ng-if="mainCtrl.map.getSelectedDesk().isFree()" ng-cloak>
+				<h1>Select user for desk {{mainCtrl.map.getSelectedDesk().id()}}</h1>
+			</div>
+			
 			<div ng-controller="UserInfoCtrl as uiCtrl">
 				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0" class="UserCtrl">
 					<div class="row">

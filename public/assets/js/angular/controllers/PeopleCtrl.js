@@ -25,12 +25,15 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			self.updateData($scope);
 		});
 		
-		// Refresh data
-		$interval(function()
-		{
-			$scope.$broadcast("update_users");
-			
-		}, 30000);
+		$scope.$on("map.desk-selected", function(){$scope.$evalAsync();});
+		$scope.$on("map.desk-unselected", function(){$scope.$evalAsync();});
+		
+//		// Refresh data
+//		$interval(function()
+//		{
+//			$scope.$broadcast("update_users");
+//			
+//		}, 30000);
 		
 	}
 	

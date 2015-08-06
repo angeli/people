@@ -58,8 +58,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		{
 			multiple				: true,
 			maximumSelectionSize	: 1, 
-			placeholder				: "Select person for desk",
-			
+						
 			query : function(query)
 			{
 				var map		= $scope.map;
@@ -78,7 +77,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 				self.PeopleApi.getAllDesks().then(function(users)
 				{
 					var result = self.searchByAny($scope, users, query.term, search_empty);
-					query.callback({results: result , more: true } );
+					query.callback({results: result } );
 				});		
 			},
 		}
@@ -96,8 +95,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		
 		$scope.map.on("map.desk-selected", function(e, map, desk)
 		{
-			$scope.select2_open = (desk && desk.isFree());
-//			$scope.$evalAsync();
+			$scope.select2_open = (desk && desk.isFree());			
 		});
 		
 	}

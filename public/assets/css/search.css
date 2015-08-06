@@ -54,3 +54,16 @@ and open the template in the editor.
 	font-size: 18px;
 }
 
+.instruction
+{
+	text-align		: center;
+	position		: absolute;
+	top				: 50px;
+	background-color: rgba(255, 255, 255, 0.95);
+	border-radius	: 0 0 20px 20px;
+	min-width		: 50%;
+	left			: 50%;
+	transform		: translateX(-50%);	 
+	box-shadow		: 1px 3px 5px 1px rgba(0,0,0, 0.3); 
+}
+
