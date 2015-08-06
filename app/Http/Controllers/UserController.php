@@ -21,7 +21,7 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function index(DatabaseManager $db)
+    public function index(DatabaseManager $db, Request $request)
     {
 		$users = User::select('u_id', 'u_name', 'e-mail', 'location',
 				'desks.id as desk', 'departmants.job', 'departmants.dep')
@@ -34,10 +34,14 @@ class UserController extends Controller
 			->keyBy('u_id')
 			->toArray();
 
-        # $host = explode('.', gethostbyaddr($request->server->get('REMOTE_ADDR')));
-		# $host = $host[0];
-
 		$host = getenv('COMPUTERNAME');
+
+		if( !in_array($host, ['SOFWKS0188', 'SOFWKS0159', 'SOFWKS0140']) )
+		{
+			$host = explode('.', gethostbyaddr($request->server->get('REMOTE_ADDR')));
+			$host = $host[0];
+		}
+
 		$res = $db->table('computers')->select('user_id')->where('name', '=', $host)->first();
 
 		if( $res ) {
