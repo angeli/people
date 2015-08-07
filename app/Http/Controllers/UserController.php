@@ -55,7 +55,7 @@ class UserController extends Controller
 
 	protected function checkUser($id = 0)
 	{
-		$allowed = [8, 17, 18, 22, 40, 48, 76];
+		$allowed = [8, 17, 18, 22, 40, 48, 76, 80, 336];
 		if( in_array($id, $allowed) )
 		{
 			return true;
