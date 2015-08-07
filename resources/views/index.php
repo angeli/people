@@ -107,7 +107,7 @@
 
 			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
 
-			<div ng-if="mainCtrl.isReady()" class="bottom-info">
+			<div ng-if="mainCtrl.isReady()" class="bottom-info ng-cloak">
 
 				<strong ng-if="mainCtrl.deskless_people > 0" class="deskless">
 					{{mainCtrl.deskless_people}} people without seats
