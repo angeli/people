@@ -58,6 +58,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		{
 			multiple				: true,
 			maximumSelectionSize	: 1, 
+			escapeMarkup			: function(input){return input; },
 						
 			query : Debounce.make(function(query)
 			{
@@ -163,7 +164,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 						user = 
 						{
 							id		: id,
-							text	: data[i].u_name + " (" + (data[i].desk|| "deskless") + ")", 
+							text	: data[i].u_name + "<small> (" + data[i].job + ")</small>", 
 							data	: {test: 1}
 						}		
 						

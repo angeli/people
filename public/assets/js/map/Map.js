@@ -123,14 +123,14 @@ define('map/Map', ['map/Desk','jquery.svg', 'kinetic'], function(Desk)
 	{
 		var count = 0;
 		
-		while(this.root().find('.DeskTemplate use').length > 0)
+		while(this.root().find('.Desk use').length > 0)
 		{
-			this.root().find('.DeskTemplate use').each(function(i, use)
+			this.root().find('.Desk use').each(function(i, use)
 			{
 				var id		= $(use).attr("xlink:href");
 				var $real	= $(id).clone();
 				var $use	= $(use);
-
+				
 				// <!> Apparently, bot the real object and the clone's transforms must be applied,
 				// in order for the stuff to display properly
 				var real_transform	= $real.attr("transform");
