@@ -48,11 +48,39 @@ class UserController extends Controller
 			$users[$res->user_id]['current'] = true;
 			$users[$res->user_id]['edit'] = $this->checkUser($res->user_id);
 		}
-
+		
+		$users = array_merge($users, $this->getSpecialUsers());
+		
 		return response()->json($users);
     }
 
-
+	
+	protected function getSpecialUsers()
+	{
+		$desks = Desk::select("*")->where("users_id", "<", "0")->get()->toArray();
+		
+		$users = [];
+		$count = 0;
+		
+		foreach($desks as $desk)
+		{
+			$key = 'spec_' + $count++;
+			
+			// Busy Desk
+			if($desk['users_id'] == -1)
+			{
+				$users[$key] = [
+					'u_id'		=> $desk['users_id'],
+					'u_name'	=> "Special Purpose",
+					'desk'		=> $desk['id'],
+					'job'		=> "The desk is currently used for a special, classified purpose."
+				];
+			}
+		}
+		
+		return $users;
+	}
+	
 	protected function checkUser($id = 0)
 	{
 		$allowed = [8, 17, 18, 22, 40, 48, 76, 80, 336, 137];
@@ -126,8 +154,20 @@ class UserController extends Controller
 
 		try {
 
-			$user = User::findOrFail($id);
-			$old_desk = $user->desk;
+			if($id > 0)
+			{
+				$user = User::findOrFail($id);
+				$old_desk = $user->desk;
+			}
+			else if($id < 0)
+			{
+				// Busy Flag
+				$old_desk = 0;
+			}
+			else
+			{
+				return new Response("Invalid user id.", 405);
+			}
 
 			#print_r( $old_desk->toArray() );
 
@@ -169,8 +209,8 @@ class UserController extends Controller
 			return new Response("There was an error while processing the update request: " . $e->getMessage(), 500);
 		}
     }
-
-    /**
+	
+	/**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

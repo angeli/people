@@ -71,12 +71,18 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 				{
 					search_empty = true;					
 				}
-				
-				
-				
+								
 				self.PeopleApi.getAllDesks().then(function(users)
 				{
 					var result = self.searchByAny($scope, users, query.term, search_empty);
+					
+					// Add Mark as Busy option
+					if(search_empty)
+					{
+						// Always on top
+						result.unshift({id: "user_" + -1, text: "<i class='fa fa-user-secret'></i> Mark for Special Purpose"});
+					}
+					
 					query.callback({results: result } );
 				});
 				
@@ -195,7 +201,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 					text	: "Free Desk (" + term + ")"
 				}
 			}
-			
+									
 			// Add user if user is object
 			if(user)
 			{

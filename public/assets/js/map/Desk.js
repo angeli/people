@@ -48,6 +48,16 @@ define('map/Desk', ['map/SvgElement'], function(SvgElement)
 		return this.$element.is('.selected');
 	}
 	
+	Desk.prototype.isBusy = function(value)
+	{
+		if(typeof value == "boolean")
+		{
+			value ? this.addClass("busy") : this.removeClass("busy");
+		}
+		
+		return this.$element.is(".busy");
+	}
+	
 	/**
 	 * Get / Set desk free status
 	 */
@@ -67,7 +77,7 @@ define('map/Desk', ['map/SvgElement'], function(SvgElement)
 			}
 		}
 		
-		return (this.is_free == true);
+		return (this.is_free == true) && (this.isBusy() != true);
 	}
 	
 	Desk.prototype.toString = function()

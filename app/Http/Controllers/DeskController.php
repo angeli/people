@@ -25,16 +25,16 @@ class DeskController extends Controller
 		$desks = Desk::select('users.*', 'desks.*', 'departmants.job', 'departmants.dep')->leftJoin('users', 'users_id', '=', 'u_id')
 			->join('departmants', 'departmants.id', '=', 'departmant_id')
 			# ->where('users_id', '<>', 0)
-			->get()
-			->toArray();
-
+				->get()
+				->toArray();
+		
 		$ret = [];
 		foreach( $desks as $k => $d )
 		{
 			$d['bg_name'] = mb_convert_encoding($d['bg_name'], 'UTF-8', 'cp1251');
 			$ret[$k] = $d;
 		}
-
+		
 		return response()->json($ret);
     }
 

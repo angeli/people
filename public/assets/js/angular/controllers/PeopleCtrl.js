@@ -62,8 +62,13 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			{
 				var user = users[i];
 				
-				hash[user.desk] = true;				
+				if(user.desk|0 != 0)
+				{
+					hash[user.desk] = user.u_id|0;
+				}				
 			}
+			
+			console.log("Hash", hash, users);
 			
 			var desks = self.map.desks;
 			self.free_desks = 0;
@@ -71,8 +76,10 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			for(var d in desks)
 			{
 				var desk = desks[d];
-				var free = hash[desk.id()] !== true;
+				var free = !hash.hasOwnProperty(desk.id());
+				var busy = hash[desk.id()] <	0;
 				desk.isFree(free);
+				desk.isBusy(busy);
 				
 				if(free)
 				{

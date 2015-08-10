@@ -47,6 +47,11 @@ and open the template in the editor.
 		fill: Lime !important;
 	}
 	
+	.Desk.busy rect
+	{
+		fill : #31A7FF !important;
+	}
+	
 	.Desk tspan
 	{
 		-webkit-touch-callout: none;
