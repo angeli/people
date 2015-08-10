@@ -52,7 +52,15 @@ define('map/Desk', ['map/SvgElement'], function(SvgElement)
 	{
 		if(typeof value == "boolean")
 		{
-			value ? this.addClass("busy") : this.removeClass("busy");
+			if(value)
+			{
+				this.addClass("busy");
+				this.isFree(false);
+			}
+			else
+			{
+				this.removeClass("busy");
+			}
 		}
 		
 		return this.$element.is(".busy");
@@ -70,6 +78,7 @@ define('map/Desk', ['map/SvgElement'], function(SvgElement)
 			if(value)
 			{
 				this.addClass("free");
+				this.isBusy(false);
 			}
 			else
 			{
@@ -77,7 +86,7 @@ define('map/Desk', ['map/SvgElement'], function(SvgElement)
 			}
 		}
 		
-		return (this.is_free == true) && (this.isBusy() != true);
+		return (this.is_free == true);
 	}
 	
 	Desk.prototype.toString = function()
