@@ -44,12 +44,9 @@ class UserController extends Controller
 
 		$res = $db->table('computers')->select('user_id')->where('name', '=', $host)->first();
 
-
-
 		if( $res ) {
 			$users[$res->user_id]['current'] = true;
 			$users[$res->user_id]['edit'] = $this->checkUser($res->user_id);
-			$users[$res->user_id]['host'] = $host;
 		}
 
 		return response()->json($users);
