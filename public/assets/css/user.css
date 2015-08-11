@@ -128,3 +128,8 @@ div.user-position, div.user-name {
     width: 330px;
 	padding: 20px;
 }
+
+.UserCtrl .fa-user-secret {
+	font-size: 92px;
+	margin: 17px 25px;
+}

@@ -216,16 +216,23 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 						var new_desk = self.map.getDesk(self.destination_desk);
 
-						new_desk.isFree(false);
+						if(self.user_id < 0)
+						{
+							new_desk.isBusy(true);
+						}
+						else
+						{
+							new_desk.isFree(false);
+						}
 
 						self.map.selectDesk(self.destination_desk);
 
 						self.scope.$evalAsync();
 						self.loader = false;
+
+						self.scope.$emit('desk_change', [self.desk, self.destination_desk]);
 					}
 				);
-
-
 			},
 			function(fail)
 			{

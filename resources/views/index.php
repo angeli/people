@@ -49,7 +49,10 @@
 			<div ng-controller="UserInfoCtrl as uiCtrl">
 				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0 && !uiCtrl.loader" class="UserCtrl" ng-cloak>
 					<div class="row">
-						<div class="col-md-4"><img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" /></div>
+						<div class="col-md-4">
+							<img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" ng-if="uiCtrl.user_id > 0"/>
+							<i ng-if="uiCtrl.user_id < 0" class="fa fa-user-secret"></i>
+						</div>
 
 						<div class="col-md-7">
 							<div class="user-name">
@@ -65,8 +68,8 @@
 
 					<div class="row user-office-info">
 						<div class="col-md-10">
-							<div class="user-team">Team: {{uiCtrl.team}}</div>
-							<div class="user-team">Department: {{uiCtrl.department}}</div>
+							<div class="user-team" ng-if="uiCtrl.team">Team: {{uiCtrl.team}}</div>
+							<div class="user-team" ng-if="uiCtrl.department">Department: {{uiCtrl.department}}</div>
 						</div>
 					</div>
 
