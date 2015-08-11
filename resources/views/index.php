@@ -24,7 +24,7 @@
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<a class="navbar-brand" href="#">People 1.0</a>
+						<a class="navbar-brand" href="#">People 1.1</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -109,7 +109,7 @@
 
 			<div ng-if="mainCtrl.isReady()" class="bottom-info ng-cloak">
 
-				<strong ng-if="mainCtrl.deskless_people > 0" class="deskless">
+				<strong ng-if="mainCtrl.deskle > 0" class="deskless">
 					{{mainCtrl.deskless_people}} people without seats
 				</strong>
 
