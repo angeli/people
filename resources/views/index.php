@@ -42,7 +42,7 @@
 			<!--The Map-->
 			<the-map ng-src="assets/svg/OfficeSmall.svg" selected-desk="testCtrl.desk_id"></the-map>
 
-			<div class="instruction" ng-if="mainCtrl.map.getSelectedDesk().isFree()" ng-cloak>
+			<div class="instruction" ng-if="mainCtrl.current_user.edit && mainCtrl.map.getSelectedDesk().isFree()" ng-cloak>
 				<h1>Select user for desk {{mainCtrl.map.getSelectedDesk().id()}}</h1>
 			</div>
 
@@ -105,7 +105,7 @@
 			</div>
 
 
-			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map"></search>
+			<search ng-if="mainCtrl.isReady()" map="mainCtrl.map" current-user="mainCtrl.current_user"></search>
 
 			<div ng-if="mainCtrl.isReady()" class="bottom-info ng-cloak">
 

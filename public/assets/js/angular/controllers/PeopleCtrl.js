@@ -62,6 +62,11 @@ define('ngController/PeopleCtrl', ['ngController/Abstract'], function(AbstractCt
 			{
 				var user = users[i];
 				
+				if(user.current)
+				{
+					self.current_user = user;
+				}
+				
 				if(user.desk|0 != 0)
 				{
 					hash[user.desk] = user.u_id|0;

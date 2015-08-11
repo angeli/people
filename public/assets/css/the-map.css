@@ -111,6 +111,11 @@ and open the template in the editor.
 		color: Red;
 	}
 	
+	img[src="http://sofwks0385/pic/-1.jpg"],
+	img[src="http://sofwks0385/pic/.jpg"]
+	{
+		display:none;
+	}
 	
 	
 	

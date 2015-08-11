@@ -54,7 +54,11 @@ class UserController extends Controller
 		return response()->json($users);
     }
 
-	
+	/**
+	 * Retunrs a list of users for all desks currently marked for special purposes
+	 * 
+	 * @return type
+	 */
 	protected function getSpecialUsers()
 	{
 		$desks = Desk::select("*")->where("users_id", "<", "0")->get()->toArray();
@@ -162,7 +166,7 @@ class UserController extends Controller
 			else if($id < 0)
 			{
 				// Busy Flag
-				$old_desk = 0;
+				$old_desk = Desk::findOrFail($from);
 			}
 			else
 			{

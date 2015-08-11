@@ -13,6 +13,7 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		{
 			map				: '=',
 			selectedDesk	: '=',
+			currentUser		: '=',
 		}		
 	}
 	
@@ -48,12 +49,18 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 		});
 	}
 	
+	
+	Search.prototype.canEdit = function($scope)
+	{
+		return ($scope.currentUser && $scope.currentUser.edit);
+	}
+	
 	Search.prototype.controller = function($scope, PeopleApi, Debounce)
 	{
 		var self = this;	
 		
-		this.PeopleApi = PeopleApi;
-				
+		this.PeopleApi		= PeopleApi;
+						
 		$scope.select2_settings = 
 		{
 			multiple				: true,
@@ -62,12 +69,12 @@ define('ngDirective/Search', ['ngDirective/Abstract', 'map/Desk'], function(Abst
 						
 			query : Debounce.make(function(query)
 			{
-				var map		= $scope.map;
-				var desk	= map.getSelectedDesk();
+				var map				= $scope.map;
+				var desk			= map.getSelectedDesk();
 				
 				var search_empty = false;
 								
-				if(desk instanceof Desk && desk.isFree())
+				if(desk instanceof Desk && desk.isFree() && self.canEdit($scope))
 				{
 					search_empty = true;					
 				}
