@@ -109,7 +109,7 @@
 
 			<div ng-if="mainCtrl.isReady()" class="bottom-info ng-cloak">
 
-				<strong ng-if="mainCtrl.deskle > 0" class="deskless">
+				<strong ng-if="mainCtrl.deskless_people > 0" class="deskless">
 					{{mainCtrl.deskless_people}} people without seats
 				</strong>
 
