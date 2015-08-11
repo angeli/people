@@ -166,7 +166,7 @@ class UserController extends Controller
 			else if($id < 0)
 			{
 				// Busy Flag
-				$old_desk = Desk::findOrFail($from);
+				$old_desk = Desk::find($from);
 			}
 			else
 			{
