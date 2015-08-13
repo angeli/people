@@ -101,17 +101,13 @@
 									<select ng-model="uiCtrl.destination_desk">
 										<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
 									</select>
+									
+									<a ng-if="uiCtrl.edit" ng-click="uiCtrl.changeDesk()" class="edit-ok"><i class="fa fa-pencil"></i></a>
+									<a ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveDesk()" class="edit-leave"><i class="fa fa-close"></i></a>
+
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="row user-office-info">
-						
-
-						<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.changeDesk()"><i class="fa fa-pencil"></i></div>
-							<div class="col-md-1"></div>
-						<div class="edit-leave col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveDesk()"><i class="fa fa-close"></i></div>
 					</div>
 
 					<div class="row user-mail">

@@ -83,21 +83,18 @@ div.user-position, div.user-name {
 
 .edit-ok, .edit-leave {
 	font-size: 25px;
+	margin: 0 5px;
 }
 .edit-ok:hover, .edit-leave:hover {
 	cursor: pointer;
 }
 
 .edit-ok {
-	color: #007aff;
-	margin: -29px 155px;
-	padding-left: 0px;
+	color: #007aff;	
 }
 
 .edit-leave {
-	color: #db2525;
-	margin: -29px 190px;
-	padding-left: 0px;
+	color: #db2525;	
 }
 
 .lock {
