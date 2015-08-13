@@ -7,7 +7,7 @@
 	background: white;
     box-shadow: 0 0 5px 2px #888888;
     border-radius: 5px;
-    height: 200px;
+    min-height: 200px;
 	left: 20px;
 	bottom: 150px;
     position: absolute;
@@ -61,7 +61,7 @@
 }
 
 .user-office-info {
-	margin-left: -5px;
+	margin: 5px 15px;
 }
 
 .user-mail {

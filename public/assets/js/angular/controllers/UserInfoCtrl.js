@@ -161,6 +161,8 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			this.department	= person.dep;
 			this.team		= person.location;
 			this.mail		= person['e-mail'];
+			this.skype		= person.skype;
+			this.int_phone	= person.int_phone;
 			this.desk		= desk;
 			this.empty		= false;
 			this.setNames();
@@ -173,6 +175,8 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 			this.department			= '';
 			this.team				= '';
 			this.mail				= '';
+			this.skype				= '';
+			this.int_phone			= '';
 			this.desk				= 0;
 			this.fname				= '';
 			this.lname				= '';

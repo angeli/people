@@ -23,9 +23,20 @@ class UserController extends Controller
      */
     public function index(DatabaseManager $db, Request $request)
     {
-		$users = User::select('u_id', 'u_name', 'e-mail', 'location',
-				'desks.id as desk', 'departmants.job', 'departmants.dep')
+		$users = User::select(	'u_id', 
+								'u_name', 
+								'e-mail', 
+								'location',
+								'skype',
+								'int_phone',
+								'departmant_id as department_id',
+								'desks.id as desk', 
+								'departmants.job', 
+								'departmants.dep',
+								'rights.users as rights')
+				
 			->leftJoin('desks', 'users_id', '=', 'u_id')
+			->leftJoin('rights', 'user_id', '=', 'u_id')
 			->join('departmants', 'departmants.id', '=', 'departmant_id')
 
 			# not quit / fired
@@ -46,7 +57,13 @@ class UserController extends Controller
 
 		if( $res ) {
 			$users[$res->user_id]['current'] = true;
-			$users[$res->user_id]['edit'] = $this->checkUser($res->user_id);
+			$users[$res->user_id]['edit'] = $this->checkUser($users[$res->user_id]);
+		}
+		
+		// Apply data restrictions
+		if(empty($res) || !$users[$res->user_id]['edit'])
+		{
+			$users = $this->filterRestrictedData($users);
 		}
 		
 		$users = array_merge($users, $this->getSpecialUsers());
@@ -54,6 +71,23 @@ class UserController extends Controller
 		return response()->json($users);
     }
 
+	/**
+	 * Filter out restricted data from users array
+	 * 
+	 * @param array $users
+	 */
+	protected function filterRestrictedData($users)
+	{
+		foreach($users as $key => $user)
+		{
+			unset($users[$key]['skype']);
+			unset($users[$key]['int_phone']);
+			unset($users[$key]['rights']);
+		}
+		
+		return $users;
+	}
+	
 	/**
 	 * Retunrs a list of users for all desks currently marked for special purposes
 	 * 
@@ -85,14 +119,73 @@ class UserController extends Controller
 		return $users;
 	}
 	
-	protected function checkUser($id = 0)
+	protected function checkUser($user)
 	{
-		$allowed = [8, 17, 18, 22, 40, 48, 76, 80, 336, 137];
-		if( in_array($id, $allowed) )
+		$user = (object)$user;
+		
+		$allowed = 		
+		[
+			8,		// Dobromir Grigorov
+			14,		// Dobrin Jordanov
+			23,		// Nikola Stoyanov
+			62,		// Dimitar Mitev
+			75,		// Ivan Protopopov
+			76,		// Tanko Shokerov
+			80,		// Boyan Iliev
+			97,		// Yordan Dichev
+			107,	// Olga Malcheva
+			110,	// Yasen Tursunov
+			114,	// Chavdar Stefanov
+			120,	// Ioana Alexova
+			127,	// Katya Bogdanliyska
+			137,	// Stefan Cherelikov
+			155,	// Ventsislav Mneev
+			160,	// Georgi Stoychev
+			172,	// Kristiyan Nikolov
+			180,	// Yanko Hristov
+			187,	// Tsvetelina Yurukova
+			194,	// Stanislav Dimitrov
+			221,	// Lyuboslav Kashinov
+			224,	// Nikolay Yotkov Yotov
+			239,	// Stiliyan Mirchev
+			253,	// Nikola Georgiev
+			255,	// Todor Bonov
+			335,	// Tsvetomir Milyovski
+			336,	// Silviya Krasteva
+			340,	// Volodya Ilchev
+			376,	// Viktor Stankov
+			380,	// Zheko Stefanov
+			385,	// Borislav Nenkov
+			386,	// Miryana Nyagolova
+			390,	// Konstantin Krastev
+			418,	// Georgi Dimitrov
+			461,	// Nikola Shabanov
+			480,	// Georgi Blagov
+			532,	// Slavi Georgiev
+			540,	// Georgi Milenov Tsanev
+			
+			17,		// Angel Iliikov
+			18,		// Dimo Dimov
+			22,		// Alexander Danev
+			40,		// Tihomir Tsvetkov
+			48		// Nikolay Dachin				
+		];
+		
+		if( in_array($user->u_id, $allowed) )
 		{
 			return true;
 		}
-
+		
+		if($user->rights == 1)
+		{
+			return true;
+		}
+		
+		if($user->department_id == 1)
+		{
+			return true;
+		}
+	
 		return false;
 
 	}

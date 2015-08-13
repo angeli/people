@@ -67,23 +67,47 @@
 					</div>
 
 					<div class="row user-office-info">
-						<div class="col-md-10">
-							<div class="user-team" ng-if="uiCtrl.team">Team: {{uiCtrl.team}}</div>
-							<div class="user-team" ng-if="uiCtrl.department">Department: {{uiCtrl.department}}</div>
+						
+						<div class="row user-team" ng-if="uiCtrl.user_id > 0">
+							<span class="col-md-4">Team:</span> 
+							<span class="col-md-8">{{uiCtrl.team}}</span>
+						</div>
+						
+						<div class="row user-team" ng-if="uiCtrl.user_id > 0">
+							<span class="col-md-4">Department:</span> 
+							<span class="col-md-8">{{uiCtrl.department}}</span>
+						</div>
+												
+						<div class="row user-team" ng-if="uiCtrl.admin && uiCtrl.user_id > 0">
+							<span class="col-md-4">Skype:</span> 
+							<span class="col-md-8">{{uiCtrl.skype}}</span>
+						</div>
+						
+						<div class="row user-team" ng-if="uiCtrl.admin && uiCtrl.user_id > 0">
+							<span class="col-md-4">Int. Phone:</span> 
+							<span class="col-md-8">{{uiCtrl.int_phone}}</span>
+						</div>
+						
+						<div class="row">
+							<span class="col-md-4">
+								Office Desk:
+							</span>
+							
+							<div class="col-md-8">	
+								<span class="user-team" ng-if="!uiCtrl.edit">{{uiCtrl.desk}}</span>
+								
+								<div class="user-team edit" ng-if="uiCtrl.edit">
+									
+									<select ng-model="uiCtrl.destination_desk">
+										<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
+									</select>
+								</div>
+							</div>
 						</div>
 					</div>
 
 					<div class="row user-office-info">
-						<div class="col-md-6">
-							<div class="user-team" ng-if="!uiCtrl.edit">Office desk: {{uiCtrl.desk}}</div>
-							<div class="user-team edit" ng-if="uiCtrl.edit">
-								<!--Office desk: <input type="text" ng-model="uiCtrl.desk" size="2">-->
-								Office desk:
-								<select ng-model="uiCtrl.destination_desk">
-									<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
-								</select>
-							</div>
-						</div>
+						
 
 						<div class="edit-ok col-md-1" ng-if="uiCtrl.edit" ng-click="uiCtrl.changeDesk()"><i class="fa fa-pencil"></i></div>
 							<div class="col-md-1"></div>
