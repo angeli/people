@@ -29,10 +29,10 @@ class UserController extends Controller
 								'location',
 								'skype',
 								'int_phone',
-								'departmant_id as department_id',
 								'desks.id as desk', 
 								'departmants.job', 
 								'departmants.dep',
+								'departmants.users as dep_users',
 								'rights.users as rights')
 				
 			->leftJoin('desks', 'users_id', '=', 'u_id')
@@ -181,7 +181,7 @@ class UserController extends Controller
 			return true;
 		}
 		
-		if($user->department_id == 1)
+		if($user->dep_users == 1)
 		{
 			return true;
 		}
