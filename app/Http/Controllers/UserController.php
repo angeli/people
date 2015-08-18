@@ -168,7 +168,8 @@ class UserController extends Controller
 			18,		// Dimo Dimov
 			22,		// Alexander Danev
 			40,		// Tihomir Tsvetkov
-			48		// Nikolay Dachin				
+			48,		// Nikolay Dachin				
+			26		// 
 		];
 		
 		if( in_array($user->u_id, $allowed) )
