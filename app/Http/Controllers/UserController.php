@@ -274,8 +274,9 @@ class UserController extends Controller
 
 			if( $to != 0 ) {
 				$new_desk = Desk::findOrFail($to);
-
-				if( $new_desk->users_id != 0 ) {
+				
+				if( !$this->checkEmptyDesk($new_desk)) 
+				{
 					return new Response("Out of sync, target desk is not empty.", 409);
 				}
 			} else {
@@ -306,6 +307,27 @@ class UserController extends Controller
 			return new Response("There was an error while processing the update request: " . $e->getMessage(), 500);
 		}
     }
+	
+	/**
+	 * Returns true if a given desk is empty 
+	 * 
+	 * @return boolean
+	 */
+	protected function checkEmptyDesk(Desk $desk)
+	{
+		if($desk->users_id == 0)
+		{
+			return true;
+		}
+		
+		// Return true if the user sitting at the desk has been fired
+		if($desk->users_id > 0 && User::find($desk->users_id)->departmant_id == 21)
+		{
+			return true;
+		}
+			
+		return false;
+	}
 	
 	/**
      * Remove the specified resource from storage.
