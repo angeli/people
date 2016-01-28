@@ -23,18 +23,18 @@ class UserController extends Controller
      */
     public function index(DatabaseManager $db, Request $request)
     {
-		$users = User::select(	'u_id', 
-								'u_name', 
-								'e-mail', 
+		$users = User::select(	'u_id',
+								'u_name',
+								'e-mail',
 								'location',
 								'skype',
 								'int_phone',
-								'desks.id as desk', 
-								'departmants.job', 
+								'desks.id as desk',
+								'departmants.job',
 								'departmants.dep',
 								'departmants.users as dep_users',
 								'rights.users as rights')
-				
+
 			->leftJoin('desks', 'users_id', '=', 'u_id')
 			->leftJoin('rights', 'user_id', '=', 'u_id')
 			->join('departmants', 'departmants.id', '=', 'departmant_id')
@@ -59,21 +59,21 @@ class UserController extends Controller
 			$users[$res->user_id]['current'] = true;
 			$users[$res->user_id]['edit'] = $this->checkUser($users[$res->user_id]);
 		}
-		
+
 		// Apply data restrictions
 		if(empty($res) || !$users[$res->user_id]['edit'])
 		{
 			$users = $this->filterRestrictedData($users);
 		}
-		
+
 		$users = array_merge($users, $this->getSpecialUsers());
-		
+
 		return response()->json($users);
     }
 
 	/**
 	 * Filter out restricted data from users array
-	 * 
+	 *
 	 * @param array $users
 	 */
 	protected function filterRestrictedData($users)
@@ -84,26 +84,26 @@ class UserController extends Controller
 			unset($users[$key]['int_phone']);
 			unset($users[$key]['rights']);
 		}
-		
+
 		return $users;
 	}
-	
+
 	/**
 	 * Retunrs a list of users for all desks currently marked for special purposes
-	 * 
+	 *
 	 * @return type
 	 */
 	protected function getSpecialUsers()
 	{
 		$desks = Desk::select("*")->where("users_id", "<", "0")->get()->toArray();
-		
+
 		$users = [];
 		$count = 0;
-		
+
 		foreach($desks as $desk)
 		{
 			$key = 'spec_' + $count++;
-			
+
 			// Busy Desk
 			if($desk['users_id'] == -1)
 			{
@@ -114,16 +114,27 @@ class UserController extends Controller
 					'job'		=> "The desk is currently used for a special, classified purpose."
 				];
 			}
+
+			// Ready Desk
+			if($desk['users_id'] == -2)
+			{
+				$users[$key] = [
+					'u_id'		=> $desk['users_id'],
+					'u_name'	=> "Ready Desk",
+					'desk'		=> $desk['id'],
+					'job'		=> "The desk is set up and ready for use."
+				];
+			}
 		}
-		
+
 		return $users;
 	}
-	
+
 	protected function checkUser($user)
 	{
 		$user = (object)$user;
-		
-		$allowed = 		
+
+		$allowed =
 		[
 			8,		// Dobromir Grigorov
 			14,		// Dobrin Jordanov
@@ -163,30 +174,30 @@ class UserController extends Controller
 			480,	// Georgi Blagov
 			532,	// Slavi Georgiev
 			540,	// Georgi Milenov Tsanev
-			
+
 			17,		// Angel Iliikov
 			18,		// Dimo Dimov
 			22,		// Alexander Danev
 			40,		// Tihomir Tsvetkov
-			48,		// Nikolay Dachin				
+			48,		// Nikolay Dachin
 			26		// Atanas Budinov
 		];
-		
+
 		if( in_array($user->u_id, $allowed) )
 		{
 			return true;
 		}
-		
+
 		if($user->rights == 1)
 		{
 			return true;
 		}
-		
+
 		if($user->dep_users == 1)
 		{
 			return true;
 		}
-	
+
 		return false;
 
 	}
@@ -275,8 +286,8 @@ class UserController extends Controller
 
 			if( $to != 0 ) {
 				$new_desk = Desk::findOrFail($to);
-				
-				if( !$this->checkEmptyDesk($new_desk)) 
+
+				if( !$this->checkEmptyDesk($new_desk))
 				{
 					return new Response("Out of sync, target desk is not empty.", 409);
 				}
@@ -308,10 +319,10 @@ class UserController extends Controller
 			return new Response("There was an error while processing the update request: " . $e->getMessage(), 500);
 		}
     }
-	
+
 	/**
-	 * Returns true if a given desk is empty 
-	 * 
+	 * Returns true if a given desk is empty
+	 *
 	 * @return boolean
 	 */
 	protected function checkEmptyDesk(Desk $desk)
@@ -320,16 +331,16 @@ class UserController extends Controller
 		{
 			return true;
 		}
-		
+
 		// Return true if the user sitting at the desk has been fired
 		if($desk->users_id > 0 && User::find($desk->users_id)->departmant_id == 21)
 		{
 			return true;
 		}
-			
+
 		return false;
 	}
-	
+
 	/**
      * Remove the specified resource from storage.
      *

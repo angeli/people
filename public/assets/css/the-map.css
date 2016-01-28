@@ -3,27 +3,27 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Jul 29, 2015, 12:10:02 PM
     Author     : Nikolay Dachin <nikolay.dachin@gameloft.com>
 */
 
 	.map-container
 	{
-		width			: 100%; 
+		width			: 100%;
 		height			: calc(100vh - 52px);
-		overflow		: scroll;		
-		
+		overflow		: scroll;
+
 		margin-top		: -20px;
-		position		: relative; 
+		position		: relative;
 	}
-	
+
 	.map-container svg
 	{
 		display		: block;
 		margin		: auto;
 		position	: relative;
-				
+
 		top: 0; left: 0; right:0; bottom: 0;
 	}
 
@@ -46,10 +46,15 @@ and open the template in the editor.
 	{
 		fill: Lime !important;
 	}
-	
+
 	.Desk.busy rect
 	{
 		fill : #31A7FF !important;
+	}
+
+	.Desk.ready rect
+	{
+		fill: #FFAD31 !important;
 	}
 	
 	.Desk tspan
@@ -66,24 +71,24 @@ and open the template in the editor.
 	{
 		position: fixed;
 		top: 20px;
-	}	
-	
+	}
+
 	.Department
 	{
 		opacity: 0 !important;
 	}
-	
+
 	.Department:hover
 	{
 		opacity: 1 !important;;
 	}
-	
+
 	*[ng-cloak],
 	.ng-cloak
 	{
 		display:none;
 	}
-	
+
 	.bottom-info
 	{
 		position: absolute;
@@ -94,29 +99,28 @@ and open the template in the editor.
 		border-radius: 0 15px 0 0;
 		background: white;
 	}
-	
-	.bottom-info > * 
+
+	.bottom-info > *
 	{
 		margin : 2px 10px;
 	}
-	
+
 	.bottom-info .free-desks
 	{
 		color : #00f115;
 	}
-	
+
 	.bottom-info .deskless,
 	.bottom-info .no-free-desks
 	{
 		color: Red;
 	}
-	
+
 	img[src="http://sofwks0385/pic/-1.jpg"],
 	img[src="http://sofwks0385/pic/.jpg"]
 	{
 		display:none;
 	}
-	
-	
-	
-			
+
+
+

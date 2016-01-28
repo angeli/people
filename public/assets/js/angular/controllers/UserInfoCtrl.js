@@ -220,9 +220,13 @@ define('ngController/UserInfoCtrl', ['ngController/Abstract'], function(Abstract
 
 						var new_desk = self.map.getDesk(self.destination_desk);
 
-						if(self.user_id < 0)
+						if(self.user_id == -1)
 						{
 							new_desk.isBusy(true);
+						}
+						else if(self.user_id == -2)
+						{
+							new_desk.isReady(true);
 						}
 						else
 						{

@@ -51,7 +51,8 @@
 					<div class="row">
 						<div class="col-md-4">
 							<img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" ng-if="uiCtrl.user_id > 0"/>
-							<i ng-if="uiCtrl.user_id < 0" class="fa fa-user-secret"></i>
+							<i ng-if="uiCtrl.user_id == -1" class="fa fa-user-secret special"></i>
+							<i ng-if="uiCtrl.user_id == -2" class="fa fa-check-square special"></i>
 						</div>
 
 						<div class="col-md-7">
@@ -67,41 +68,41 @@
 					</div>
 
 					<div class="row user-office-info">
-						
+
 						<div class="row user-team" ng-if="uiCtrl.user_id > 0">
-							<span class="col-md-4">Team:</span> 
+							<span class="col-md-4">Team:</span>
 							<span class="col-md-8">{{uiCtrl.team}}</span>
 						</div>
-						
+
 						<div class="row user-team" ng-if="uiCtrl.user_id > 0">
-							<span class="col-md-4">Department:</span> 
+							<span class="col-md-4">Department:</span>
 							<span class="col-md-8">{{uiCtrl.department}}</span>
 						</div>
-												
+
 						<div class="row user-team" ng-if="uiCtrl.admin && uiCtrl.user_id > 0">
-							<span class="col-md-4">Skype:</span> 
+							<span class="col-md-4">Skype:</span>
 							<span class="col-md-8">{{uiCtrl.skype}}</span>
 						</div>
-						
+
 						<div class="row user-team" ng-if="uiCtrl.admin && uiCtrl.user_id > 0">
-							<span class="col-md-4">Int. Phone:</span> 
+							<span class="col-md-4">Int. Phone:</span>
 							<span class="col-md-8">{{uiCtrl.int_phone}}</span>
 						</div>
-						
+
 						<div class="row">
 							<span class="col-md-4">
 								Office Desk:
 							</span>
-							
-							<div class="col-md-8">	
+
+							<div class="col-md-8">
 								<span class="user-team" ng-if="!uiCtrl.edit">{{uiCtrl.desk}}</span>
-								
+
 								<div class="user-team edit" ng-if="uiCtrl.edit">
-									
+
 									<select ng-model="uiCtrl.destination_desk">
 										<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
 									</select>
-									
+
 									<a ng-if="uiCtrl.edit" ng-click="uiCtrl.changeDesk()" class="edit-ok"><i class="fa fa-pencil"></i></a>
 									<a ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveDesk()" class="edit-leave"><i class="fa fa-close"></i></a>
 

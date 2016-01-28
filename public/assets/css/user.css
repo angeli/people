@@ -90,11 +90,11 @@ div.user-position, div.user-name {
 }
 
 .edit-ok {
-	color: #007aff;	
+	color: #007aff;
 }
 
 .edit-leave {
-	color: #db2525;	
+	color: #db2525;
 }
 
 .lock {
@@ -126,7 +126,7 @@ div.user-position, div.user-name {
 	padding: 20px;
 }
 
-.UserCtrl .fa-user-secret {
+.UserCtrl .fa.special {
 	font-size: 92px;
 	margin: 17px 25px;
 }
