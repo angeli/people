@@ -27,13 +27,11 @@ define('ngService/PeopleApi', ['ngService/Abstract'], function(AbstractService)
 			self.http.get('/api/user', options)
 			.success(function(result)
 			{
-				console.log("Get Desks Success", result);
 				self.people = result;
 				def.resolve(result);
 			})
 			.error(function(result)
 			{
-				console.log("Get Desks Failed!", result);
 				def.reject(result);
 			});
 		}
