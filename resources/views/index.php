@@ -99,11 +99,11 @@
 
 								<div class="user-team edit" ng-if="uiCtrl.edit">
 
-									<select ng-model="uiCtrl.destination_desk">
+									<select ng-if="uiCtrl.user_id > 0" ng-model="uiCtrl.destination_desk">
 										<option ng-repeat="free_desk in uiCtrl.free_desks" value="{{free_desk}}">{{free_desk}}</option>
 									</select>
 
-									<a ng-if="uiCtrl.edit" ng-click="uiCtrl.changeDesk()" class="edit-ok"><i class="fa fa-pencil"></i></a>
+									<a ng-if="uiCtrl.edit && uiCtrl.user_id > 0" ng-click="uiCtrl.changeDesk()" class="edit-ok"><i class="fa fa-pencil"></i></a>
 									<a ng-if="uiCtrl.edit" ng-click="uiCtrl.leaveDesk()" class="edit-leave"><i class="fa fa-close"></i></a>
 
 								</div>
