@@ -50,7 +50,7 @@
 				<div ng-show="uiCtrl.desk !== false && uiCtrl.desk > 0 && !uiCtrl.loader" class="UserCtrl" ng-cloak>
 					<div class="row">
 						<div class="col-md-4">
-							<img src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" ng-if="uiCtrl.user_id > 0"/>
+							<img ng-src="http://sofwks0385/pic/{{uiCtrl.user_id}}.jpg" class="user-picture" ng-if="uiCtrl.user_id > 0"/>
 							<i ng-if="uiCtrl.user_id == -1" class="fa fa-user-secret special"></i>
 							<i ng-if="uiCtrl.user_id == -2" class="fa fa-check-square special"></i>
 						</div>
