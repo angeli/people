@@ -59,11 +59,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.28"
-     inkscape:cx="2549.1234"
-     inkscape:cy="1055.4082"
+     inkscape:zoom="0.38139572"
+     inkscape:cx="1255.2922"
+     inkscape:cy="923.57052"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1028"
@@ -120,7 +120,8 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="Base"
-     style="display:inline;opacity:1">
+     style="display:inline;opacity:1"
+     sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
        id="layer5"
@@ -314,6 +315,38 @@
            inkscape:connector-curvature="0" />
       </g>
     </g>
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.2;marker:none;enable-background:accumulate"
+       id="rect16089"
+       width="140.27425"
+       height="40.640205"
+       x="955.70038"
+       y="1107.0433" />
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.2;marker:none;enable-background:accumulate"
+       id="rect16091"
+       width="52.375435"
+       height="108.92237"
+       x="1501.7382"
+       y="1299.3105" />
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.2;marker:none;enable-background:accumulate"
+       id="rect16093"
+       width="39.984718"
+       height="51.987118"
+       x="1476.9764"
+       y="1459.8195" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="36.707287"
+       y="-126.58356"
+       id="text16095"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan16097"
+         x="36.707287"
+         y="-126.58356">Missing: 425, 426</tspan></text>
   </g>
   <g
      inkscape:label="Desk Layer"
@@ -22424,60 +22457,7 @@
     </g>
     <g
        style="display:inline;opacity:1;enable-background:new"
-       class="Desk"
-       id="g7603-2-0"
-       inkscape:label="#Desk1"
-       onclick=""
-       transform="matrix(-1,0,0,1,-144.08848,1435.1724)">
-      <g
-         class="DeskTemplate"
-         onclick=""
-         transform="translate(-2515.9573,-360.32927)"
-         id="g7605-1-7">
-        <use
-           x="0"
-           y="0"
-           xlink:href="#DeskTemplate"
-           id="use7607-6-5"
-           transform="translate(3079.7371,355.35772)"
-           width="3572"
-           height="1735"
-           inkscape:label="#use4025"
-           class="DeskPlaceholder"
-           inkscape:transform-center-x="-1.329602"
-           inkscape:transform-center-y="8.2142855" />
-      </g>
-      <text
-         transform="matrix(0,-1,-1,0,0,0)"
-         sodipodi:linespacing="125%"
-         id="text7609-8-6"
-         y="699.50641"
-         x="223.20503"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
-           y="699.50641"
-           x="223.20503"
-           sodipodi:role="line"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
-           id="tspan7611-5-5">425</tspan></text>
-      <g
-         style="display:none"
-         class="highlight Marker"
-         id="g7613-7-2"
-         transform="translate(127.9655,-386.04051)">
-        <use
-           x="0"
-           y="0"
-           xlink:href="#g4057"
-           id="use7615-6-9"
-           transform="translate(422.87456,-47.23375)"
-           width="3572"
-           height="1735" />
-      </g>
-    </g>
-    <g
-       style="display:inline;opacity:1;enable-background:new"
-       transform="translate(1335.3944,1371.198)"
+       transform="translate(1335.3944,1377.9169)"
        onclick=""
        inkscape:label="#Desk1"
        id="g7533-9-4"
@@ -22526,59 +22506,6 @@
            xlink:href="#g4057"
            y="0"
            x="0" />
-      </g>
-    </g>
-    <g
-       style="display:inline;opacity:1;enable-background:new"
-       class="Desk"
-       id="g7589-7-2"
-       inkscape:label="#Desk1"
-       onclick=""
-       transform="translate(1335.3944,1435.1724)">
-      <g
-         class="DeskTemplate"
-         onclick=""
-         transform="translate(-2515.9573,-360.32927)"
-         id="g7591-6-3">
-        <use
-           x="0"
-           y="0"
-           xlink:href="#DeskTemplate"
-           id="use7593-1-6"
-           transform="translate(3079.7371,355.35772)"
-           width="3572"
-           height="1735"
-           inkscape:label="#use4025"
-           class="DeskPlaceholder"
-           inkscape:transform-center-x="-1.329602"
-           inkscape:transform-center-y="8.2142855" />
-      </g>
-      <text
-         transform="matrix(0,-1,1,0,0,0)"
-         sodipodi:linespacing="125%"
-         id="text7595-4-2"
-         y="-686.40192"
-         x="223.20503"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
-           y="-686.40192"
-           x="223.20503"
-           sodipodi:role="line"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
-           id="tspan7597-2-0">426</tspan></text>
-      <g
-         style="display:none"
-         class="highlight Marker"
-         id="g7599-3-7"
-         transform="translate(127.9655,-386.04051)">
-        <use
-           x="0"
-           y="0"
-           xlink:href="#g4057"
-           id="use7601-2-3"
-           transform="translate(422.87456,-47.23375)"
-           width="3572"
-           height="1735" />
       </g>
     </g>
     <g
@@ -22685,59 +22612,6 @@
            transform="translate(422.87456,-47.23375)"
            width="3572"
            height="1735" />
-      </g>
-    </g>
-    <g
-       style="display:inline;opacity:1;enable-background:new"
-       transform="translate(1301.75,1531.4211)"
-       onclick=""
-       inkscape:label="#Desk1"
-       id="g7533-9-4-2"
-       class="Desk">
-      <g
-         id="g7535-4-5-2"
-         transform="translate(-2515.9573,-360.32927)"
-         onclick=""
-         class="DeskTemplate">
-        <use
-           inkscape:transform-center-y="8.2142855"
-           inkscape:transform-center-x="-1.329602"
-           class="DeskPlaceholder"
-           inkscape:label="#use4025"
-           height="1735"
-           width="3572"
-           transform="translate(3079.7371,355.35772)"
-           id="use7537-8-2-9"
-           xlink:href="#DeskTemplate"
-           y="0"
-           x="0" />
-      </g>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         x="223.20503"
-         y="-686.40192"
-         id="text7539-8-6-7"
-         sodipodi:linespacing="125%"
-         transform="matrix(0,-1,1,0,0,0)"><tspan
-           id="tspan7541-2-5-1"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
-           sodipodi:role="line"
-           x="223.20503"
-           y="-686.40192">431</tspan></text>
-      <g
-         transform="translate(127.9655,-386.04051)"
-         id="g7543-4-9-5"
-         class="highlight Marker"
-         style="display:none">
-        <use
-           height="1735"
-           width="3572"
-           transform="translate(422.87456,-47.23375)"
-           id="use7545-5-8-0"
-           xlink:href="#g4057"
-           y="0"
-           x="0" />
       </g>
     </g>
     <g
@@ -22952,6 +22826,45 @@
          inkscape:transform-center-y="-33.591364"
          class="Pointer"
          transform="matrix(1,0,0,-1,556.25,2.8685662)" />
+    </g>
+    <g
+       transform="matrix(0,1,1,0,410.31697,1658.8102)"
+       class="Desk"
+       id="g7453-9"
+       style="display:inline;opacity:1;enable-background:new">
+      <use
+         height="100%"
+         width="100%"
+         transform="translate(438.17299,-52.259159)"
+         id="use7455-0"
+         xlink:href="#AdminDeskTemplate"
+         y="0"
+         x="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;enable-background:new"
+         x="-249.91258"
+         y="-677.17865"
+         id="text7457-9"
+         sodipodi:linespacing="125%"
+         transform="matrix(0,1,1,0,0,0)"><tspan
+           id="tspan7459-81"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+           sodipodi:role="line"
+           x="-249.91258"
+           y="-677.17865">431</tspan></text>
+      <use
+         style="display:none;opacity:1;enable-background:new"
+         x="0"
+         y="0"
+         xlink:href="#g4057"
+         id="use7742-5-2"
+         width="100%"
+         height="100%"
+         transform="matrix(1,0,0,-1,560.02221,7.7809605)"
+         inkscape:transform-center-x="-1.5678756"
+         inkscape:transform-center-y="12.497614"
+         class="Pointer" />
     </g>
   </g>
 </svg>
