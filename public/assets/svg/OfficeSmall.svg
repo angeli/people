@@ -59,14 +59,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.76279144"
-     inkscape:cx="1114.4661"
-     inkscape:cy="373.89034"
+     inkscape:zoom="1.5255829"
+     inkscape:cx="860.7982"
+     inkscape:cy="801.41155"
      inkscape:document-units="px"
-     inkscape:current-layer="g7453-7"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-height="1027"
      inkscape:window-x="-8"
      inkscape:window-y="22"
      inkscape:window-maximized="1"
@@ -22869,6 +22869,165 @@
          inkscape:transform-center-x="-1.5678756"
          inkscape:transform-center-y="12.497614"
          class="Pointer" />
+    </g>
+    <g
+       style="display:inline;opacity:1;enable-background:new"
+       class="Desk"
+       id="g34513-7"
+       inkscape:label="#Desk1"
+       onclick=""
+       transform="translate(662.74967,1022.1488)">
+      <g
+         class="DeskTemplate"
+         onclick=""
+         transform="translate(-2515.9573,-360.32927)"
+         id="g34515-6">
+        <use
+           x="0"
+           y="0"
+           xlink:href="#DeskTemplate"
+           id="use34517-7"
+           transform="translate(3079.7371,355.35772)"
+           width="3572"
+           height="1735"
+           inkscape:label="#use4025"
+           class="DeskPlaceholder"
+           inkscape:transform-center-x="-1.329602"
+           inkscape:transform-center-y="8.2142855" />
+      </g>
+      <text
+         transform="matrix(0,-1,1,0,0,0)"
+         sodipodi:linespacing="125%"
+         id="text34519-2"
+         y="-686.40192"
+         x="223.20503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           y="-686.40192"
+           x="223.20503"
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+           id="tspan34521-3">433</tspan></text>
+      <g
+         style="display:none"
+         class="highlight Marker"
+         id="g34523-6"
+         transform="translate(127.9655,-386.04051)">
+        <use
+           x="0"
+           y="0"
+           xlink:href="#g4057"
+           id="use34525-2"
+           transform="translate(422.87456,-47.23375)"
+           width="3572"
+           height="1735" />
+      </g>
+    </g>
+    <g
+       transform="translate(662.74967,910.71598)"
+       onclick=""
+       inkscape:label="#Desk1"
+       id="g7253"
+       class="Desk"
+       style="display:inline;opacity:1;enable-background:new">
+      <g
+         id="g7255"
+         transform="translate(-2515.9573,-360.32927)"
+         onclick=""
+         class="DeskTemplate">
+        <use
+           inkscape:transform-center-y="8.2142855"
+           inkscape:transform-center-x="-1.329602"
+           class="DeskPlaceholder"
+           inkscape:label="#use4025"
+           height="1735"
+           width="3572"
+           transform="translate(3079.7371,355.35772)"
+           id="use7257"
+           xlink:href="#DeskTemplate"
+           y="0"
+           x="0" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         x="223.20503"
+         y="-686.40192"
+         id="text7259"
+         sodipodi:linespacing="125%"
+         transform="matrix(0,-1,1,0,0,0)"><tspan
+           id="tspan7261"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+           sodipodi:role="line"
+           x="223.20503"
+           y="-686.40192">434</tspan></text>
+      <g
+         transform="translate(127.9655,-386.04051)"
+         id="g7263"
+         class="highlight Marker"
+         style="display:none">
+        <use
+           height="1735"
+           width="3572"
+           transform="translate(422.87456,-47.23375)"
+           id="use7265"
+           xlink:href="#g4057"
+           y="0"
+           x="0" />
+      </g>
+    </g>
+    <g
+       style="display:inline;opacity:1;enable-background:new"
+       class="Desk"
+       id="g7267"
+       inkscape:label="#Desk1"
+       onclick=""
+       transform="translate(662.74967,798.62767)">
+      <g
+         class="DeskTemplate"
+         onclick=""
+         transform="translate(-2515.9573,-360.32927)"
+         id="g7269">
+        <use
+           x="0"
+           y="0"
+           xlink:href="#DeskTemplate"
+           id="use7271"
+           transform="translate(3079.7371,355.35772)"
+           width="3572"
+           height="1735"
+           inkscape:label="#use4025"
+           class="DeskPlaceholder"
+           inkscape:transform-center-x="-1.329602"
+           inkscape:transform-center-y="8.2142855" />
+      </g>
+      <text
+         transform="matrix(0,-1,1,0,0,0)"
+         sodipodi:linespacing="125%"
+         id="text7273"
+         y="-686.40192"
+         x="223.20503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           y="-686.40192"
+           x="223.20503"
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle"
+           id="tspan7281">435</tspan></text>
+      <g
+         style="display:none"
+         class="highlight Marker"
+         id="g7277"
+         transform="translate(127.9655,-386.04051)">
+        <use
+           x="0"
+           y="0"
+           xlink:href="#g4057"
+           id="use7279"
+           transform="translate(422.87456,-47.23375)"
+           width="3572"
+           height="1735" />
+      </g>
     </g>
   </g>
 </svg>
